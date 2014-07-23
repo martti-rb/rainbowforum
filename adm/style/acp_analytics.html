@@ -1,0 +1,34 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<form id="analytics" method="post" action="{U_EDIT_ACTION}">
+
+
+	<div>
+		<fieldset>			
+			<legend>{L_ANALYTICS}</legend>
+			<dl>
+				<dt><label for="google_analytics_en">{L_GOOGLE_ANALYTICS_ENABLE}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="google_analytics_en" value="1"<!-- IF S_GOOGLE_ANALYTICS_EN --> id="google_analytics_en" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="google_analytics_en" value="0"<!-- IF not S_GOOGLE_ANALYTICS_EN --> id="google_analytics_en" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>	
+			<dl>
+				<dt><label for="statcounter_en">{L_STATCOUNTER_ENABLE}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="statcounter_en" value="1"<!-- IF S_STATCOUNTER_EN --> id="statcounter_en" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="statcounter_en" value="0"<!-- IF not S_STATCOUNTER_EN --> id="statcounter_en" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>						
+		</fieldset>
+	</div>
+	
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,375 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/js/range.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/js/timer.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/js/cslider.js"></script>
+<link type="text/css" rel="StyleSheet" href="{T_TEMPLATE_PATH}/css/zop/zop.css" />
+
+
+<!-- IF S_UPDATED -->
+	<div class="successbox">
+		<h3>{L_NOTIFY}</h3>
+		<p>{L_TOPIC_COLORS_SETTINGS_UPDATE_SUCCESSFUL}</p>
+	</div>
+<!-- ENDIF -->
+
+<form id="topic_colors" method="post" action="{U_EDIT_ACTION}" onsubmit="submit_form();">
+
+	<div >
+		<fieldset>			
+			<legend>{L_TOPIC_COLOR_GENERAL}</legend>
+			<dl>
+				<dt><label for="topic_color_enable">{L_TOPIC_COLOR_ENABLE}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="topic_color_enable" value="1"<!-- IF S_TOPIC_COLOR_ENABLE --> id="topic_color_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="topic_color_enable" value="0"<!-- IF not S_TOPIC_COLOR_ENABLE --> id="topic_color_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>
+			<dl>
+				<dt><label for="topic_color_input">{L_TOPIC_COLOR_INPUT}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="topic_color_input" value="1"<!-- IF S_TOPIC_COLOR_INPUT --> id="topic_color_input" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="topic_color_input" value="0"<!-- IF not S_TOPIC_COLOR_INPUT --> id="topic_color_input" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>				
+	
+		</fieldset>
+	</div>
+
+	<div >
+		<fieldset>			
+			<legend>{L_COLOR_SETS}</legend>
+			<dl>
+				<dt><label for="new_color_set">{L_NEW_COLOR_SET}:</label><br /><span>{L_NEW_COLOR_SET_EXPLAIN}</span></dt>
+				<dd><input type="text" id="new_color_set" name="new_color_set" value="" maxlength="30" size="30" /></dd>
+			</dl>	
+			<dl>
+				<dt><label for="new_color_set_copy">{L_COLOR_SET_COPY}:</label><br /><span>{L_COLOR_SET_COPY_EXPLAIN}</span></dt>
+				<dd><select id="color_set_copy" name="color_set_copy">
+				{COLOR_SET_OPTIONS}
+				</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="csd">{L_COLOR_SET_DELETE}:</label><br /><span>{L_COLOR_SET_DELETE_EXPLAIN}</span></dt>
+				<dd><select id="csd" name="csd[]" multiple="multiple" size="10">
+				{COLOR_SET_OPTIONS}
+				</select></dd>
+			</dl>					
+		</fieldset>
+	</div>	
+	
+	<div >
+		<fieldset>			
+			<legend>{L_COLOR_SET_ASSIGN}</legend>
+			<dl>
+				<dt><label for="topic_a">{L_COLOR_TOPIC_A}:</label><br /><span>{L_COLOR_TOPIC_A_EXPLAIN}</span></dt>
+				<dd><select id="topic_a" name="topic_a">{COLOR_SET_OPTIONS_TOPIC_A}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="topic_b">{L_COLOR_TOPIC_B}:</label><br /><span>{L_COLOR_TOPIC_B_EXPLAIN}</span></dt>
+				<dd><select id="topic_b" name="topic_b">{COLOR_SET_OPTIONS_TOPIC_B}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="topic_c">{L_COLOR_TOPIC_C}:</label><br /><span>{L_COLOR_TOPIC_C_EXPLAIN}</span></dt>
+				<dd><select id="topic_c" name="topic_c">{COLOR_SET_OPTIONS_TOPIC_C}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="topic_d">{L_COLOR_TOPIC_D}:</label><br /><span>{L_COLOR_TOPIC_D_EXPLAIN}</span></dt>
+				<dd><select id="topic_d" name="topic_d">{COLOR_SET_OPTIONS_TOPIC_D}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="quote_a">{L_QUOTE_A}:</label><br /><span>{L_QUOTE_A_EXPLAIN}</span></dt>
+				<dd><select id="quote_a" name="quote_a">{COLOR_SET_OPTIONS_QUOTE_A}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="quote_b">{L_QUOTE_B}:</label><br /><span>{L_QUOTE_B_EXPLAIN}</span></dt>
+				<dd><select id="quote_b" name="quote_b">{COLOR_SET_OPTIONS_QUOTE_B}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="quote_c">{L_QUOTE_C}:</label><br /><span>{L_QUOTE_C_EXPLAIN}</span></dt>
+				<dd><select id="quote_c" name="quote_c">{COLOR_SET_OPTIONS_QUOTE_C}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="quote_d">{L_QUOTE_D}:</label><br /><span>{L_QUOTE_D_EXPLAIN}</span></dt>
+				<dd><select id="quote_d" name="quote_d">{COLOR_SET_OPTIONS_QUOTE_D}</select></dd>
+			</dl>			
+			<dl>
+				<dt><label for="code_a">{L_CODE_A}:</label><br /><span>{L_CODE_A_EXPLAIN}</span></dt>
+				<dd><select id="code_a" name="code_a">{COLOR_SET_OPTIONS_CODE_A}</select></dd>
+			</dl>			
+			<dl>
+				<dt><label for="code_b">{L_CODE_B}:</label><br /><span>{L_CODE_B_EXPLAIN}</span></dt>
+				<dd><select id="code_b" name="code_b">{COLOR_SET_OPTIONS_CODE_B}</select></dd>
+			</dl>			
+			<dl>
+				<dt><label for="attachment_a">{L_ATTACHMENT_A}:</label><br /><span>{L_ATTACHMENT_A_EXPLAIN}</span></dt>
+				<dd><select id="attachment_a" name="attachment_a">{COLOR_SET_OPTIONS_ATTACHMENT_A}</select></dd>
+			</dl>			
+			<dl>
+				<dt><label for="attachment_b">{L_ATTACHMENT_B}:</label><br /><span>{L_ATTACHMENT_B_EXPLAIN}</span></dt>
+				<dd><select id="attachment_b" name="attachment_b">{COLOR_SET_OPTIONS_ATTACHMENT_B}</select></dd>
+			</dl>			
+			<dl>
+				<dt><label for="forum_a">{L_FORUM_A}:</label><br /><span>{L_FORUM_A_EXPLAIN}</span></dt>
+				<dd><select id="forum_a" name="forum_a">{COLOR_SET_OPTIONS_FORUM_A}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="forum_b">{L_FORUM_B}:</label><br /><span>{L_FORUM_B_EXPLAIN}</span></dt>
+				<dd><select id="forum_b" name="forum_b">{COLOR_SET_OPTIONS_FORUM_B}</select></dd>
+			</dl>			
+				
+		</fieldset>	
+	
+	<div id="cas" >
+		<fieldset>			
+		<legend>{L_COLOR_SET_EDIT}</legend>
+		
+		<div id="cselects" style="height:90px;">
+		
+		<div style="float:right;background-color:#AAE;margin: 0 10px 10px 0;">
+			<div style="float:left; margin: 0 0 0 5px;">
+				<input type="text" id="edit_slider" name="edit_slider" value="0" size="3" maxlength="3" onchange="sl1.setValueFromValue(this, 640);" style="margin:15px 2px;"/>
+				<div style="font-weight: bold;background-color: #CCC; padding: 2px 2px;">
+				<input type="checkbox" id="edit_stf" name="edit_stf" value="{EDIT_STF}" <!-- IF EDIT_STF --> checked="checked" <!-- ENDIF --> onclick="can.f_follow_s(this);" style="cursor:pointer;"/>
+				s->f
+				</div>	
+			</div>		
+			
+			<div style="float:left;margin:0 10px 0 10px; padding: 5px 0 5px 0; height: 100%;">
+				<div style="margin: 2px 2px;">
+					<select id="edit_0" name="edit_0" onchange="cb[0].change_edit('edit_0');">{COLOR_SET_OPTIONS_EDIT_0}</select>
+				</div>			
+				<div style="margin: 2px 2px;">
+					<select id="edit_1" name="edit_1" onchange="cb[1].change_edit('edit_1');">{COLOR_SET_OPTIONS_EDIT_1}</select>
+				</div>
+				<div style="margin: 2px 2px;">
+					<select id="edit_2" name="edit_2" onchange="cb[2].change_edit('edit_2');">{COLOR_SET_OPTIONS_EDIT_2}</select>
+				</div>
+				<div style="margin: 2px 2px;">
+					<select id="edit_3" name="edit_3" onchange="cb[3].change_edit('edit_3');">{COLOR_SET_OPTIONS_EDIT_3}</select>
+				</div>
+
+			</div>
+		</div>
+		
+		<div style="float:right;margin:0 10px 10px 0; height: 100%;background-color:#CCC;">
+		
+			<div style="margin: 5px 5px 2px 10px;"><label>{L_COLOR_SET_MERGE_FROM}</label>
+				<select id="merge_from" name="merge_from">{COLOR_SET_OPTIONS}</select>
+			</div>
+
+			<div style="float:left;margin:0 10px 10px 0;">
+				<div style="float:left;margin:5px 0 0 10px;">
+					<label>{L_MERGE_AMOUNT}</label></br>
+					<input type="text" id="merge" name="merge" value="0" size="3" maxlength="3" onchange="merge_sl.setValueFromValue(this, 100);" style="margin:6px 2px;"/>	
+					<button class="button1" type="button" id="merge_button" name="merge_button" value="1" onclick="can.modify(this);">{L_GO}</button>	
+				</div>	
+
+				<div style="float:left; margin: 0 10px;"> 
+					<div class="small-slider" id="merge_slider" tabIndex="1" >
+					   <input class="slider-input" id="merge_v" name="merge_v"/> 		   
+					</div>	
+				</div>
+			</div>
+	
+		</div>
+
+		<div style="float:right;margin:0 10px 10px 20px; height: 100%;background-color:#EAA;">
+			<div style="float:left;margin:0 10px 10px 10px;">
+				<div style="margin:20px 0 0 0;">
+					<button class="button1" type="button" id="undo_button" name="undo_button" value="1" disabled="disabled">{L_UNDO}</button>	
+				</div>
+				<div style="margin:5px 0 0 0;">
+					<button class="button1" type="button" id="redo_button" name="redo_button" value="1" disabled="disabled">{L_REDO}</button>				
+				</div>	
+			</div>
+		</div>		
+
+
+		<div id="prutske"></div>
+		<div id="prutske_2">{TEST_PHP}</div>
+		
+		</div>
+
+<script type="text/javascript">
+
+var merge_sl = new Slider(document.getElementById("merge_slider"), document.getElementById("merge_v"), 'vertical');
+merge_sl.setMaximum(100);
+merge_sl.setValue({MERGE_VALUE});
+merge_sl.onchange = merge_sl_onchange;
+merge_sl_onchange();
+
+function merge_sl_onchange()
+{
+//	var value = document.getElementById("merge_value").value;
+	document.getElementById("merge").value = merge_sl.getValue();
+}
+
+</script>
+	
+		<div style="clear:both;">
+		
+		<div id="cslider" height="100"  width="655" style="float:left;"> 
+		
+			<canvas id="cvs0" width="655" height="110" style="background-color:black;position:absolute;"></canvas> 
+			<div class="slider" id="slider1" tabIndex="1" >
+			   <input class="slider-input" id="sliderin1" name="sliderin1"/> 		   
+			</div>	
+		</div>
+
+		<div id="cbbg" style="float:left; width:150px; height:110px;">
+		</div>
+		
+		</div>
+		
+		<div id="css01" style="clear:both; padding-top: 5px; width:100%;">		
+		</div>
+		
+		</fieldset>
+	</div>	
+
+<input type="hidden" id="edit_focus" name="edit_focus" value="{EDIT_FOCUS}"/>
+<input type="hidden" id="mod_slider" name="mod_slider" value="{MOD_SLIDER}"/>	
+<input type="hidden" id="edit_cb_m" name="edit_cb_m" value="{EDIT_CB_M}"/>
+<input type="hidden" id="edit_s_m" name="edit_s_m" value="{EDIT_S_M}"/>
+<input type="hidden" id="edit_ch_m" name="edit_ch_m" value="{EDIT_CH_M}"/>
+<input type="hidden" id="edit_cb_s" name="edit_cb_s" value="{EDIT_CB_S}"/>
+<input type="hidden" id="edit_s_s" name="edit_s_s" value="{EDIT_S_S}"/>
+<input type="hidden" id="edit_ch_s" name="edit_ch_s" value="{EDIT_CH_S}"/>
+
+	<div>
+		<fieldset>			
+			<legend>{L_TOPIC_COLOR_PRESET}</legend>
+			<dl>
+				<dt><label for="topic_color_preset_min">{L_TOPIC_COLOR_PRESET_MIN}:</label><br /><span>{L_TOPIC_COLOR_PRESET_MIN_EXPLAIN}</span></dt>
+				<dd><input type="text" id="topic_color_preset_min" name="topic_color_preset_min" value="{TOPIC_COLOR_PRESET_MIN}" maxlength="4" size="4" /></dd>
+			</dl>			
+			<dl>
+				<dt><label for="topic_color_preset_max">{L_TOPIC_COLOR_PRESET_MAX}:</label><br /><span>{L_TOPIC_COLOR_PRESET_MAX_EXPLAIN}</span></dt>
+				<dd><input type="text" id="topic_color_preset_max" name="topic_color_preset_max" value="{TOPIC_COLOR_PRESET_MAX}" maxlength="4" size="4" /></dd>
+			</dl>			
+			<dl>
+				<dt><label for="forum_color_preset_min">{L_FORUM_COLOR_PRESET_MIN}:</label><br /><span>{L_FORUM_COLOR_PRESET_MIN_EXPLAIN}</span></dt>
+				<dd><input type="text" id="forum_color_preset_min" name="forum_color_preset_min" value="{FORUM_COLOR_PRESET_MIN}" maxlength="4" size="4" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="forum_color_preset_max">{L_FORUM_COLOR_PRESET_MAX}:</label><br /><span>{L_FORUM_COLOR_PRESET_MAX_EXPLAIN}</span></dt>
+				<dd><input type="text" id="forum_color_preset_max" name="forum_color_preset_max" value="{FORUM_COLOR_PRESET_MAX}" maxlength="4" size="4" /></dd>
+			</dl>
+			
+		</fieldset>
+	</div>
+
+	<fieldset class="submit-buttons" >
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+
+</form>
+
+<script type="text/javascript">
+	
+var color_set_ids = [{COLOR_SET_IDS_ARY}];
+var color_set_names = [{COLOR_SET_NAMES_ARY}];
+var color_set = [{COLOR_SET_ARY}];
+var color_set_changed = [{COLOR_SET_CHANGED_ARY}];	
+
+var sl1 = new Slider(document.getElementById('slider1'), document.getElementById('sliderin1'));
+sl1.setMaximum(640);
+sl1.setValue({EDIT_SLIDER});
+sl1.input = document.getElementById("edit_slider");
+	
+var can = new CCanvas(document.getElementById('cvs0'), sl1, document.getElementById('undo_button'),document.getElementById('redo_button'));
+can.drawLines();
+
+var ccb1 = new CBar(can, false, false);
+ccb1.setHeight(4);
+ccb1.draw();
+
+var ccb2 = new CBar(can, false, false);
+ccb2.setHeight(4);
+ccb2.setYOffset(106);
+ccb2.draw();
+
+var cb = new Array();
+
+for (var rr = 0; rr < 4; rr++)
+{
+	var zzz = (rr < 2) ? 0 : 4;
+	cb[rr] = new CBar(can, document.getElementById('edit_' + rr), rr);
+	cb[rr].setYOffset(10 + (rr * 22) + zzz);
+	cb[rr].draw();
+}
+
+//can.set_cbar_focus(cb[document.getElementById("edit_focus").value]);
+cb[parseInt(document.getElementById('edit_focus').value)].set_focus();
+
+can.create_csgs(document.getElementById('css01'));
+
+var merge_button = document.getElementById('merge_button');
+merge_button.input = document.getElementById('merge');
+merge_button.select = document.getElementById('merge_from');
+
+can.create_modify_buttons_and_channels(document.getElementById('css01'), merge_button);
+
+sl1.onchange = sl1_change;
+sl1_change();
+
+function sl1_change()
+{
+	document.getElementById("edit_slider").value = sl1.getValue();
+	
+	cb[0].update_bg();
+	cb[1].update_bg();
+	cb[2].update_bg();
+	cb[3].update_bg();
+}
+
+
+function submit_form()
+{
+	for (var i = 0; i < color_set.length; i++)
+	{
+		if (color_set_changed[i])
+		{
+			var e = this.document.createElement("INPUT");
+			e.type = 'hidden';
+			e.name = 'hcsc' + color_set_ids[i];
+			e.id = e.name;
+			e.value = 1;
+			document.getElementById('css01').appendChild(e);
+
+			for (var j = 0; j < color_set[i].length; j++)
+			{
+				e = this.document.createElement("INPUT");
+				e.type = 'hidden';
+				e.name = 'hcs' + color_set_ids[i] + 'r' + j;
+				e.id = e.name;
+				e.value = color_set[i][j][0];
+				document.getElementById('css01').appendChild(e);
+
+				e = this.document.createElement("INPUT");
+				e.type = 'hidden';
+				e.name = 'hcs' + color_set_ids[i] + 'g' + j;
+				e.id = e.name;
+				e.value = color_set[i][j][1];
+				document.getElementById('css01').appendChild(e);
+
+				e = this.document.createElement("INPUT");
+				e.type = 'hidden';
+				e.name = 'hcs' + color_set_ids[i] + 'b' + j;
+				e.id = e.name;
+				e.value = color_set[i][j][2];
+				document.getElementById('css01').appendChild(e);	
+			}
+		}
+	}
+}
+	   
+</script>	
+	
+
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,349 @@
+
+<script type="text/javascript">
+// <![CDATA[
+
+var loc_b_parent_ids_ary = [{SCRIPT_LOC_B_PARENT_IDS_ARY}];
+var loc_c_parent_ids_ary = [{SCRIPT_LOC_C_PARENT_IDS_ARY}];
+var loc_b_has_children_ary = [{SCRIPT_LOC_B_HAS_CHILDREN_ARY}];
+
+var loc_b_parent_index_ary = [{SCRIPT_LOC_B_PARENT_INDEX_ARY}];
+var loc_c_parent_index_ary = [{SCRIPT_LOC_C_PARENT_INDEX_ARY}];
+
+var loc_ary = [{SCRIPT_LOC_ARY}];
+var loc_max{SCRIPT_LOC_MAX};
+
+var last_loc;
+var first_loc;
+
+var loc_a_model;
+var loc_b_model;
+var loc_c_model;
+
+onload_functions.push('on_load_location_input()');
+
+function on_load_location_input()
+{
+	var loc = document.getElementById('locdl0');
+	loc.id = null;
+
+	add_loc_references(loc);
+
+	first_loc = loc;
+	o_loc = loc;
+	
+	loc_a_model = loc.a.cloneNode(true);
+	loc_b_model = loc.b.cloneNode(true);
+	loc_c_model = loc.c.cloneNode(true);
+	
+//	loc.mdl_a = loc.a.cloneNode(true);
+//	loc.mdl_b = loc.b.cloneNode(true);
+//	loc.mdl_c = loc.c.cloneNode(true);	
+
+	create_loc_selects(loc);
+
+	loc.index = 0;
+	loc.prev = null;
+	loc.next = null;
+	
+	link_loc(loc); // link mod
+	
+	load_loc_ary(loc);
+}
+
+function add_loc_references(loc)
+{
+	var elem = loc.getElementsByTagName('dt');
+	loc.dt = elem[0];
+	elem = loc.getElementsByTagName('dd');
+	loc.dd = elem[0];
+	elem = loc.getElementsByTagName('label');
+	loc.lab = elem[0];	
+	elem = loc.getElementsByTagName('select');
+	loc.a = elem[0];
+	loc.b = elem[1];
+	loc.c = elem[2];
+	elem = loc.getElementsByTagName('a');	
+	loc.loc_add = elem[0];	
+	
+	loc.a.loc = loc;
+	loc.b.loc = loc;
+	loc.c.loc = loc;
+
+	loc.loc_add.loc = loc;	
+	last_loc = loc;
+	loc.last = true;
+	
+//	loc.a.selectedIndex = 0;
+//	loc.b.selectedIndex = 0;
+//	loc.c.selectedIndex = 0;
+
+	loc.c.style.display = 'none';	
+}
+
+function create_loc_selects(loc)
+{
+
+	loc.b_selects = new Array()
+	loc.b_selects[0] = loc_b_model.cloneNode(true);
+	
+	loc.empty_b = loc_b_model.cloneNode(true);
+	loc.empty_b.options.length = 1;
+		
+	loc.c.options.length = 1;
+
+	for (var i = 1; i < first_loc.a.options.length; i++)
+	{
+		loc.b_selects[i] = loc.empty_b.cloneNode(true);
+	}
+
+	for (i = 1; i < loc_b_model.options.length; i++)
+	{	
+		var loc_b_options = loc.b_selects[loc_b_parent_index_ary[i]].options;	
+		loc_b_options.add(new Option(loc_b_model.options[i].text, loc_b_model.options[i].value));
+		var loc_b_last_option = loc_b_options[loc_b_options.length - 1];
+		loc_b_last_option.original_index = i;
+		loc_b_last_option.has_children = (loc_b_has_children_ary[i]) ? true : false;
+	}
+}
+
+function insert_new_location(loc)
+{
+	loc.loc_add.style.display = 'none';
+	
+	if (last_loc.index > loc_max - 2)
+	{
+		return;
+	}
+	
+	var new_loc = first_loc.cloneNode(true);
+	
+	add_loc_references(new_loc);
+	create_loc_selects(new_loc);
+	swap_b_select(new_loc);
+	
+	new_loc.index = loc.index + 1;
+	loc.last = false;
+	loc.next = new_loc;
+	new_loc.prev = loc;
+	new_loc.next = null;
+	
+	new_loc.a.selectedIndex = 0;
+	
+	new_loc.lab.innerHTML = '';
+	var n_string = new_loc.index + 1;
+	n_string += (new_loc.index < 3) ? ((new_loc.index < 2) ? '{L_LOCATION_SECOND}' : '{L_LOCATION_THIRD}') : '{L_LOCATION_FOURTH_PLUS}';
+	n_string = '{L_LOCATION_TAG_N}'.replace(/%s/, n_string);
+	n_string += ':';
+	var new_text_node = document.createTextNode(n_string);
+	new_loc.lab.appendChild(new_text_node);
+
+	document.getElementById('fields_post_edit').insertBefore(new_loc, document.getElementById('loc_ins'));
+	
+	return new_loc;
+}
+
+function load_loc_ary(loc)
+{
+	for(var i = 0; i < loc_ary.length; i++)
+	{
+		if (!(loc_ary[i][0] && loc_ary[i][1]))
+		{
+			break;
+		}		
+		loc.a.value = loc_ary[i][0];
+		loc_a_change(loc.a);
+		loc.b.value = loc_ary[i][1];
+		loc_b_change(loc.b);	
+		loc.c.value = loc_ary[i][2];
+		loc_c_change(loc.c);
+		if ((i + 1) != loc_ary.length)
+		{
+			loc = insert_new_location(loc);
+		}
+	
+		if (!loc)
+		{
+			break;
+		}	
+	}
+}
+
+function add_location(loc_add)
+{
+	var loc = loc_add.loc;
+	insert_new_location(loc);
+}
+
+function swap_b_select(loc)
+{
+	loc.dd.replaceChild(loc.b_selects[loc.a.selectedIndex], loc.b);
+	loc.b = loc.b_selects[loc.a.selectedIndex];
+	loc.b.loc = loc;
+	loc.b.value = 0;
+	loc.c.style.display = 'none';
+}
+
+function loc_a_change(loc_a)
+{
+	var loc = loc_a.loc;
+	swap_b_select(loc);
+	check_add_location_link(loc);
+
+// link mod begin
+	
+	if (loc == first_loc)    
+	{
+		link_loc.change_a();
+	}
+	
+// link mod end	
+	
+}
+
+function loc_b_change(loc_b)
+{
+	var loc = loc_b.loc;
+	
+	if (!loc.a.selectedIndex)
+	{
+		loc.a.selectedIndex = loc_b_parent_index_ary[loc.b.selectedIndex];	
+		var store_loc_b_value = loc.b.value;				
+		loc.dd.replaceChild(loc.b_selects[loc.a.selectedIndex], loc.b);
+		loc.b = loc.b_selects[loc.a.selectedIndex];
+		loc.b.loc = loc;
+		loc.b.value = store_loc_b_value;	
+	}
+
+	loc.c.options.length = 1;	
+	
+	var option_b = loc.b.options[loc.b.selectedIndex];		
+	
+	if (option_b.has_children)
+	{
+		loc.c.style.display = 'inline';				
+		loc.c.options.length = 1;
+		loc.c.options[0].original_index = 0;
+	
+		for (var i = 1; i < loc_c_model.options.length; i++)
+		{
+			if (option_b.original_index == loc_c_parent_index_ary[i])
+			{
+				loc.c.options.add(new Option(loc_c_model.options[i].text, loc_c_model.options[i].value));
+				loc.c.options[loc.c.options.length - 1].original_index = i;
+			}
+
+		}
+	}
+	else
+	{
+		loc.c.style.display = 'none';							
+	}
+	
+	check_add_location_link(loc);
+
+	option_b.original_index = (option_b.original_index == undefined) ? 0 : option_b.original_index;
+
+// link mod begin
+	
+	if (loc == first_loc)    
+	{
+		link_loc.change_b();
+	}
+	
+// link mod end	
+
+}
+
+function loc_c_change(loc_c)
+{
+
+// link mod begin	
+
+	if (loc_c.loc == first_loc)    
+	{
+		link_loc.change_c();
+	}
+	
+// link mod end	
+		
+}
+
+function check_add_location_link(loc)
+{
+	if (loc.b.selectedIndex && loc.a.selectedIndex && (last_loc.index < loc_max - 1))
+	{
+		loc.loc_add.style.display = 'inline';
+	}
+	else
+	{
+		loc.loc_add.style.display = 'none';
+		remove_locations(loc);
+	}
+}
+
+function remove_locations(loc)
+{
+	while (!loc.last)
+	{	
+		var prev = last_loc.prev;	
+		document.getElementById('fields_post_edit').removeChild(last_loc);
+		
+		prev.next = null;
+		prev.last = true;
+		last_loc = prev;
+	}
+	
+	if (loc.b.selectedIndex && loc.a.selectedIndex && (last_loc.index < loc_max - 1))
+	{
+		loc.loc_add.style.display = 'inline';
+	}	
+}
+
+// link mod begin
+
+function link_loc(loc)
+{
+	link_loc.loc = loc;
+	link_loc.lock = true;
+}
+
+link_loc.change_a = function()
+{
+	link_loc.change();
+};
+
+link_loc.change_b = function()
+{
+	link_loc.change();
+};
+
+link_loc.change_c = function()
+{
+	link_loc.change();
+};
+
+link_loc.unlock = function()
+{
+	link_loc.lock = false;	
+};
+
+link_loc.change = function()
+{
+	if (link_loc.lock)
+	{
+		return;
+	}
+
+	if (link_loc_glue)
+	{
+		link_loc_glue.change(link_loc.loc.a.value, link_loc.loc.b.value, link_loc.loc.c.value);	
+	}
+};
+
+
+
+// link mod end
+
+
+// ]]>
+</script>

@@ -1,0 +1,37 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<form id="hide_announce" method="post" action="{U_EDIT_ACTION}">
+
+
+	<div>
+		<fieldset>			
+			<legend>{L_HIDE_LEGEND}</legend>
+			<dl>
+				<dt><label for="hide_announce_enable">{L_HIDE_ANNOUNCE_ENABLE}:</label><br /><span>{L_HIDE_ANNOUNCE_EXPLAIN}</span></dt>
+				<dd><label><input type="radio" class="radio" name="hide_announce_enable" value="1"<!-- IF S_HIDE_ANNOUNCE_ENABLE --> id="hide_announce_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="hide_announce_enable" value="0"<!-- IF not S_HIDE_ANNOUNCE_ENABLE --> id="hide_announce_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>
+
+			<dl>
+				<dt><label for="hide_filters_enable">{L_HIDE_FILTERS_ENABLE}:</label><br /><span>{L_HIDE_FILTERS_EXPLAIN}</span></dt>
+				<dd><label><input type="radio" class="radio" name="hide_filters_enable" value="1"<!-- IF S_HIDE_FILTERS_ENABLE --> id="hide_filters_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="hide_filters_enable" value="0"<!-- IF not S_HIDE_FILTERS_ENABLE --> id="hide_filters_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>
+			
+		</fieldset>
+	</div>
+
+	
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

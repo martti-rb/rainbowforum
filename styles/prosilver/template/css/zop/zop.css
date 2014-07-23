@@ -1,0 +1,120 @@
+/*
+	back:	rgb(230,230,230)
+	dark:	rgb(90,97,90)
+	medium	rgb(189,190,189)
+	*/
+
+.dynamic-slider-control {
+	position:			relative;
+/*	background-color:	rgb(230,230,230); */
+	-moz-user-focus:	normal;
+	-moz-user-select:	none;
+	cursor:				default;
+}
+
+.horizontal {
+	width:				655px;
+	height:				110px;
+}
+
+.vertical, .red, .green, .blue {
+	width:				12px;
+	height:				146px; /*274px;*/
+}
+
+.small-slider
+{
+	width:				12px;
+	height:				68px;
+}
+
+.dynamic-slider-control input {
+	display:	none;
+}
+
+.dynamic-slider-control .handle {
+	position:			absolute;	
+	font-size:			1px;
+	overflow:			hidden;
+	-moz-user-select:	none;
+	cursor:				default;
+}
+
+.dynamic-slider-control.horizontal .handle {
+	width:				15px;
+	height:				110px;
+	background-image:	url("handle.horizontal.png");
+}
+
+.dynamic-slider-control.horizontal .handle div {}
+.dynamic-slider-control.horizontal .handle.hover {}
+
+.dynamic-slider-control.vertical .handle,
+.dynamic-slider-control.red .handle, 
+.dynamic-slider-control.green .handle,
+.dynamic-slider-control.blue .handle
+{
+	width:				14px;
+	height:				15px;
+}
+
+.dynamic-slider-control.vertical .handle 
+{
+	background-image:	url("handle.vertical.png");
+}
+.dynamic-slider-control.red .handle 
+{
+	background-image:	url("handle.red.png");
+}
+.dynamic-slider-control.green .handle 
+{
+	background-image:	url("handle.green.png");
+}
+.dynamic-slider-control.blue .handle 
+{
+	background-image:	url("handle.blue.png");
+}
+
+.dynamic-slider-control.vertical .handle.hover {}
+
+
+
+.dynamic-slider-control .line {
+	position:			absolute;
+	font-size:			0.01mm;
+	overflow:			hidden;
+	border:				0px solid rgb(90,97,90);
+	background:			transparant; /*rgb(189,190,189); */
+	
+	behavior:			url("css/boxsizing.htc"); /* ie path bug */
+	box-sizing:			content-box;
+	-moz-box-sizing:	content-box;
+}
+.dynamic-slider-control.vertical .line 
+{
+	width:				2px;
+	background-color:	green;
+}
+.dynamic-slider-control.red .line 
+{
+	width:				2px;
+	background-color:	red;
+}
+.dynamic-slider-control.green .line 
+{
+	width:				2px;
+	background-color:	green;
+}
+.dynamic-slider-control.blue .line 
+{
+	width:				2px;
+	background-color:	blue;
+}
+
+.dynamic-slider-control.horizontal .line {
+	height:				0px;
+}
+
+.dynamic-slider-control .line div {
+
+}

@@ -1,0 +1,308 @@
+<!-- INCLUDE overall_header.html -->
+
+<div class="h-box radius-div">
+
+<h2>
+<!-- IF S_DISPLAY_PARENT_FORUM -->
+<a href="{U_VIEW_PARENT_FORUM}">{PARENT_FORUM_NAME}</a> <strong>&#8249;</strong> 
+<!-- ENDIF -->
+<a href="{U_VIEW_FORUM}">{FORUM_NAME}</a>
+</h2>
+
+<!-- IF S_LINKS_FORUM -->
+<p>[&nbsp;<a href="{S_LINK_VIEW_ACTION}">
+<!-- IF S_LINK_VIEW -->{L_SWITCH_TO_FORUM_VIEW}
+<!-- ELSE -->{L_SWITCH_TO_LINK_VIEW}
+<!-- ENDIF -->
+</a>&nbsp;]</p>
+<!-- ENDIF -->
+
+<!-- IF S_FORUM_RULES -->	
+	<div class="inner">
+	<!-- IF U_FORUM_RULES -->
+		<a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
+	<!-- ELSE -->
+		<!--	L_FORUM_RULES removed     -->
+		{FORUM_RULES}
+	<!-- ENDIF -->
+	</div>
+<!-- ENDIF -->
+
+<!-- IF U_MCP -->
+<p>[&nbsp;<a href="{U_MCP}">{L_MCP}</a>&nbsp;]</p>
+<!-- ENDIF -->
+
+<!-- IF FORUM_DESC or MODERATORS or U_MCP -->
+<div>
+	<!-- NOTE: remove the style="display: none" when you want to have the forum description on the forum body -->
+	<!-- IF FORUM_DESC --><div style="display: none !important;">{FORUM_DESC}<br /></div><!-- ENDIF -->
+	<!-- IF MODERATORS --><p><strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->:</strong> {MODERATORS}</p><!-- ENDIF -->
+</div>
+<!-- ENDIF -->
+
+</div>
+<div class="uni-box radius-div">
+
+<!-- INCLUDE forum_filterbox.html -->
+
+<!-- IF S_HAS_SUBFORUM -->
+<!-- IF not S_IS_BOT and U_MARK_FORUMS -->
+<ul class="linklist">
+	<li class="rightside"><a href="{U_MARK_FORUMS}">{L_MARK_SUBFORUMS_READ}</a></li>
+</ul>
+
+<!-- ENDIF -->
+
+<!-- INCLUDE forumlist_body.html -->
+	
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_POST_INFO or PAGINATION or TOTAL_POSTS or TOTAL_TOPICS -->
+
+
+	<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
+		<div class="buttons">
+			<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{TLC_POST_TOPIC}<!-- ENDIF -->" onclick="window.location.href='{U_POST_NEW_TOPIC}'"><a href="{U_POST_NEW_TOPIC}"><span></span><!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED_B}<!-- ELSE -->{TLC_POST_TOPIC_B}<!-- ENDIF --></a></div>
+			<!-- link mod replace (prev) -->
+		</div>
+	<!-- ENDIF -->
+
+	<!-- IF S_DISPLAY_SEARCHBOX -->
+		<div class="search-box">
+			<form method="get" id="forum-search" action="{S_SEARCHBOX_ACTION}">
+			<fieldset>
+				<input class="inputbox search tinyplus" type="text" name="keywords" id="search_keywords" size="20" value="{TLC_SEARCH_FORUM}" onclick="if (this.value == '{LA_SEARCH_FORUM}') this.value = '';" onblur="if (this.value == '') this.value = '{LA_SEARCH_FORUM}';" />
+				<!-- link mod // circle mod replace (prev) -->
+				<input class="button2" type="submit" value="{L_SEARCH}" />
+				{S_SEARCH_LOCAL_HIDDEN_FIELDS}
+			</fieldset>
+			</form>
+		</div>
+	<!-- ENDIF -->
+
+	<!-- IF PAGINATION or TOTAL_POSTS or TOTAL_TOPICS -->
+		<div class="pagination">
+			<!-- IF not S_IS_BOT and U_MARK_TOPICS --><a href="{U_MARK_TOPICS}" accesskey="m">{TLC_MARK_TOPICS_READ}</a> &bull; <!-- ENDIF --><!-- IF TOTAL_TOPICS -->{TOTAL_TOPICS}<!-- ENDIF -->
+			<!-- IF PAGE_NUMBER -->
+				<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
+			<!-- ENDIF -->
+			
+			<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">&nbsp{L_NEXT}</a><!-- ENDIF -->
+			<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="right-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}&nbsp</a><!-- ENDIF -->
+		</div>
+	<!-- ENDIF -->
+
+	<div class="clear"></div>
+<!-- ENDIF -->
+
+<!-- IF S_NO_READ_ACCESS -->
+
+	<div class="panel radius-div">
+		<div class="inner">
+		<strong>{L_NO_READ_ACCESS}</strong>
+		</div>
+	</div>
+
+	<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
+
+		<form action="{S_LOGIN_ACTION}" method="post">
+
+		<div class="panel radius-div">
+			<div class="inner">
+			<div class="content">
+				<h3><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a><!-- IF S_REGISTER_ENABLED -->&nbsp; &bull; &nbsp;<a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></h3>
+
+				<fieldset class="fields1">
+				<dl>
+					<dt><label for="username">{L_USERNAME}:</label></dt>
+					<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="inputbox autowidth" /></dd>
+				</dl>
+				<dl>
+					<dt><label for="password">{L_PASSWORD}:</label></dt>
+					<dd><input type="password" tabindex="2" id="password" name="password" size="25" class="inputbox autowidth" /></dd>
+					<!-- IF S_AUTOLOGIN_ENABLED --><dd><label for="autologin"><input type="checkbox" name="autologin" id="autologin" tabindex="3" /> {L_LOG_ME_IN}</label></dd><!-- ENDIF -->
+					<dd><label for="viewonline"><input type="checkbox" name="viewonline" id="viewonline" tabindex="4" /> {L_HIDE_ME}</label></dd>
+				</dl>
+				<dl>
+					<dt>&nbsp;</dt>
+					<dd><input type="submit" name="login" tabindex="5" value="{L_LOGIN}" class="button1" /></dd>
+				</dl>
+				{S_LOGIN_REDIRECT}
+				</fieldset>
+			</div>
+
+			</div>
+		</div>
+
+		</form>
+
+	<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+<!-- IF S_LINK_VIEW -->
+
+<!-- INCLUDE view_links_body.html -->
+
+<!-- ELSE -->
+
+<!-- BEGIN topicrow -->
+
+	<!-- IF not topicrow.S_TOPIC_TYPE_SWITCH and not topicrow.S_FIRST_ROW -->
+		</ul>
+		</div>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- IF topicrow.S_FIRST_ROW or not topicrow.S_TOPIC_TYPE_SWITCH -->
+
+		<!-- IF topicrow.S_FIRST_ROW --></div><!-- ENDIF -->
+
+		<div class="forumbg radius-div <!-- IF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) --> announcement<!-- ENDIF --><!-- IF S_LINKS_CIRCLES_FORUM --> links-circles<!-- ENDIF -->">
+		<div class="inner">
+
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt><div><!-- IF S_DISPLAY_ACTIVE -->{L_ACTIVE_TOPICS}
+						<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) -->{L_ANNOUNCEMENTS}
+
+<!-- hide announce mod begin (modified block) -->
+
+						<!-- IF S_HIDE_ANNOUNCE_ENABLE -->
+						<a href="{S_HIDE_ANNOUNCE_ACTION}" style="cursor:pointer;"><!-- IF S_HIDE_ANNOUNCE -->{L_SHOW}<!-- ELSE -->{L_HIDE}<!-- ENDIF --></a>
+						<!-- ENDIF -->
+						</div>
+						<!-- IF not S_HIDE_ANNOUNCE -->
+						<dd class="posts">{L_REPLIES}</dd>
+						<dd class="views">{L_VIEWS}</dd>
+						<dd class="lastpost"><span>{L_LAST_POST}</span></dd>
+						<!-- ENDIF -->
+						</dt>
+						<!-- ELSE -->{TLC_TOPICS}</dt>
+						<dd class="posts">{L_REPLIES}</dd>
+						<dd class="views">{L_VIEWS}</dd>
+						<dd class="lastpost"><span>{TLC_LAST_POST}</span></dd><!-- ENDIF -->
+					
+<!-- hide announce mod end (modified block) -->	
+				
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist topics" <!-- IF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) -->id="announce" <!-- IF S_HIDE_ANNOUNCE -->style="display:none;"<!-- ENDIF --><!-- ENDIF -->><!-- hide announce mod --> 			
+
+	<!-- ENDIF -->
+
+		<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_GLOBAL --> global-announce<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->" 
+		onclick="window.location.href='{topicrow.U_VIEW_TOPIC}'"> <!-- style="background-color: {topicrow.COLOR_BG};"--> <!-- clickable row added -->
+			<dl class="icon" style="background-image: url({topicrow.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat;">
+				<dt <!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="{topicrow.TOPIC_FOLDER_IMG_ALT}">
+					<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF -->
+<!-- topic title prefix mod begin -->
+					<!-- BEGIN titleprefix -->
+					<a href="{topicrow.titleprefix.U_TITLE_PREFIX}" class="topictitle" title="{L_FILTER_ON_PREFIX_TAG}">{topicrow.titleprefix.TITLE_PREFIX}</a>
+					<!-- END titleprefix -->
+<!-- topic title prefix mod end -->
+					<a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">
+<!-- topic title prefix mod - begin -->					
+					{topicrow.TITLE_PREFIX}					
+<!-- topic title prefix mod - end -->					
+					{topicrow.TOPIC_TITLE}</a>
+<!-- calendar mod begin -->					
+					<!-- IF topicrow.DATE_SUFFIX -->[<a href="{topicrow.U_CALENDAR_TOPIC}" class="topictitle">{topicrow.DATE_SUFFIX}</a>]<!-- ENDIF --> 
+<!-- calendar mod end -->
+<!-- link mod begin -->
+					<!-- IF topicrow.LINK_STATUS_TEXT --><em class="{topicrow.LINK_STATUS_CLASS}">[{topicrow.LINK_STATUS_TEXT}]</em><!-- ENDIF -->
+<!-- link mod end -->
+					<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+					<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --><br />
+					<!-- IF topicrow.PAGINATION --><strong class="pagination"><span>{topicrow.PAGINATION}</span></strong><!-- ENDIF -->
+					<!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF -->
+					<!-- IF not S_LINKS_CIRCLES_FORUM -->
+					{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL} &raquo; {topicrow.FIRST_POST_TIME}
+					<!-- ELSEIF topicrow.U_LINK_URL -->
+					<a href="{topicrow.U_LINK_URL}" target="_blank">{topicrow.U_LINK_URL}</a>
+					<!-- ENDIF -->
+					
+<!-- archive mod begin -->					
+					<!-- IF S_FORUM_IS_ARCHIVE --><p>{L_ARCHIVED_FROM}
+					<!-- IF topicrow.S_ARCHIVE_UNKNOWN -->{L_ARCHIVE_UNKNOWN}<!-- ELSE -->
+					<a href="{topicrow.U_ARCHIVE_FROM_FORUM}"><!-- IF topicrow.ARCHIVE_PARENT_NAME -->{topicrow.ARCHIVE_PARENT_NAME} &#60; <!-- ENDIF -->{topicrow.ARCHIVE_FORUM_NAME}</a><!-- ENDIF -->
+					</p><!-- ENDIF -->   
+<!-- archive mod end -->
+
+<!-- locations mod begin -->
+					<!-- IF topicrow.LOCATION_TAG_STRING --><p>{topicrow.LOCATION_TAG_STRING}</p><!-- ENDIF -->
+<!-- locations mod end -->
+
+				</dt>
+				<dd class="posts">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></dd>
+				<dd class="views">{topicrow.VIEWS} <dfn>{L_VIEWS}</dfn></dd>
+				<dd class="lastpost"><span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}
+					<!-- IF not S_IS_BOT and not S_LINKS_CIRCLES_FORUM --><a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br />{topicrow.LAST_POST_TIME}</span>
+				</dd>
+			</dl>
+		</li>
+
+	<!-- IF topicrow.S_LAST_ROW -->
+			</ul>
+		</div>
+	</div>
+	<div class="uni-box radius-div">
+	<!-- ENDIF -->
+
+<!-- BEGINELSE -->
+	<!-- IF S_IS_POSTABLE -->
+		<br/><hr/><br/>
+		<div class="inner">
+		<strong>
+<!-- link mod // circle mod begin (replace)-->		
+		{TLC_NO_TOPICS}   
+<!-- link mod // circle mod end (replace)-->		
+		</strong>
+		</div>
+		<br><hr/><br/>
+	<!-- ENDIF -->
+<!-- END topicrow -->
+
+<!-- ENDIF -->
+
+<!-- sort days moved from here -->
+
+<!-- IF .topicrow and not S_DISPLAY_ACTIVE -->
+		<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
+		<div class="buttons">
+			<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{TLC_POST_TOPIC}<!-- ENDIF -->" onclick="window.location.href='{U_POST_NEW_TOPIC}'"><a href="{U_POST_NEW_TOPIC}"><span></span><!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED_B}<!-- ELSE -->{TLC_POST_TOPIC_B}<!-- ENDIF --></a></div>
+		</div>
+		<!-- ENDIF -->
+
+		<!-- IF PAGINATION or TOTAL_POSTS or TOTAL_TOPICS -->
+		<div class="pagination">
+			<!-- IF TOTAL_TOPICS and not S_IS_BOT and U_MARK_TOPICS --><a href="{U_MARK_TOPICS}">{TLC_MARK_TOPICS_READ}</a> &bull;  <!-- ENDIF -->
+			<!-- IF TOTAL_POSTS and not NEWEST_USER --> {TOTAL_POSTS}<!-- ELSEIF TOTAL_TOPICS and not NEWEST_USER --> {TOTAL_TOPICS}<!-- ENDIF -->
+			<!-- IF TOTAL_USERS -->{TOTAL_USERS}<!-- ENDIF -->
+			<!-- IF PAGINATION --> &bull;  <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a>
+			 &bull;  <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
+			 
+			<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">&nbsp{L_NEXT}</a><!-- ENDIF -->
+			<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="right-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}&nbsp</a><!-- ENDIF -->
+			 
+		</div>
+		<!-- ENDIF -->
+	<div class="clear"></div>
+	<br/><hr/><br/>	
+<!-- ENDIF -->
+
+<!-- INCLUDE jumpbox.html -->
+<br/><hr/><br/>
+<!-- IF S_DISPLAY_ONLINE_LIST -->
+	<h3><!-- IF U_VIEWONLINE --><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a><!-- ELSE -->{L_WHO_IS_ONLINE}<!-- ENDIF --></h3>
+	<p>{LOGGED_IN_USER_LIST}</p>
+<!-- ENDIF -->
+
+<!-- IF S_FORUM_PERMISSIONS and S_DISPLAY_POST_INFO -->
+	<h3>{L_FORUM_PERMISSIONS}</h3>
+	<p><!-- BEGIN rules -->{rules.RULE}<br /><!-- END rules --></p>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

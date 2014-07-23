@@ -1,0 +1,10 @@
+[10-Feb-2010 04:18:16] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/lightflo/public_html/_rainbowforum/includes/acp/acp_database.php:601) in /home/lightflo/public_html/_rainbowforum/includes/functions.php on line 3543
+[18-Mar-2011 19:13:51] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 78 bytes) in /home/lightflo/public_html/_rainbowforum/includes/template.php on line 511
+[18-Mar-2011 19:14:29] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 78 bytes) in /home/lightflo/public_html/_rainbowforum/includes/template.php on line 511
+[18-Mar-2011 19:15:52] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 80 bytes) in /home/lightflo/public_html/_rainbowforum/includes/template.php on line 511
+[18-Mar-2011 19:16:06] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 80 bytes) in /home/lightflo/public_html/_rainbowforum/includes/template.php on line 511
+[18-Mar-2011 19:17:47] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 82 bytes) in /home/lightflo/public_html/_rainbowforum/includes/template.php on line 520
+[18-Mar-2011 19:19:48] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 24 bytes) in /home/lightflo/public_html/_rainbowforum/includes/template.php on line 472
+[18-Mar-2011 19:20:52] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 24 bytes) in /home/lightflo/public_html/_rainbowforum/includes/template.php on line 472
+[23-Mar-2011 09:14:21] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 262144 bytes) in /home/lightflo/public_html/_rainbowforum/includes/template.php on line 527
+[23-Mar-2011 09:14:44] PHP Fatal error:  Allowed memory size of 41943040 bytes exhausted (tried to allocate 262144 bytes) in /home/lightflo/public_html/_rainbowforum/includes/template.php on line 527

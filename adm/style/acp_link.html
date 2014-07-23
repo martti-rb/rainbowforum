@@ -1,0 +1,86 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<!-- IF S_UPDATED -->
+	<div class="successbox">
+		<h3>{L_NOTIFY}</h3>
+		<p>{L_LINK_SETTINGS_UPDATE_SUCCESSFUL}</p>
+	</div>
+<!-- ENDIF -->
+
+
+<form id="link" method="post" action="{U_ACTION}">
+
+	<div id="link_general">
+		<fieldset>			
+			<legend>{L_LINK_GENERAL}</legend>				
+			<dl>
+				<dt><label for="link_forum_id">{L_LINK_FORUM_ID}:</label><br /><span>{L_LINK_FORUM_ID_EXPLAIN}</span></dt>
+				<dd><input type="text" id="link_forum_id" name="link_forum_id" value="{LINK_FORUM_ID}" maxlength="4" size="4" /></dd>
+			</dl>			
+				
+			<dl>
+				<dt><label for="links_per_post">{L_LINKS_PER_POST}:</label><br /><span>{L_LINKS_PER_POST_EXPLAIN}</span></dt>
+				<dd><input type="text" id="links_per_post" name="links_per_post" value="{LINKS_PER_POST}" maxlength="4" size="4" /></dd>
+			</dl>			
+		</fieldset>			
+	</div>			
+	
+	<div >
+		<fieldset>			
+			<legend>{L_LINK_SOURCES}</legend>
+			<dl>
+				<dt><label for="new_link_source">{L_NEW_LINK_SOURCE}:</label><br /><span>{L_NEW_LINK_SOURCE_EXPLAIN}</span></dt>
+				<dd><input type="text" id="new_link_source" name="new_link_source" value="" maxlength="30" size="30" /></dd>
+			</dl>	
+			<dl>
+				<dt><label for="lnksrcdel">{L_LINK_SOURCE_DELETE}:</label><br /><span>{L_LINK_SOURCE_DELETE_EXPLAIN}</span></dt>
+				<dd><select id="lnksrcdel" name="lnksrcdel[]" multiple="multiple" size="10">
+				{LINK_SOURCE_OPTIONS}
+				</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="lnksrcmov">{L_LINK_SOURCE_MOVE}:</label><br /><span>{L_LINK_SOURCE_MOVE_EXPLAIN}</span></dt>
+				<dd><select id="lnksrcmov" name="lnksrcmov">
+				{LINK_SOURCE_OPTIONS}
+				</select></dd>
+			</dl>						
+		</fieldset>
+	</div>	
+	
+	<div >
+		<fieldset>			
+			<legend>{L_LINK_TYPES}</legend>
+			<dl>
+				<dt><label for="new_link_type">{L_NEW_LINK_TYPE}:</label><br /><span>{L_NEW_LINK_TYPE_EXPLAIN}</span></dt>
+				<dd><input type="text" id="new_link_type" name="new_link_type" value="" maxlength="30" size="30" /></dd>
+			</dl>	
+			<dl>
+				<dt><label for="lnktpdel">{L_LINK_TYPE_DELETE}:</label><br /><span>{L_LINK_TYPE_DELETE_EXPLAIN}</span></dt>
+				<dd><select id="lnktpdel" name="lnktpdel[]" multiple="multiple" size="10">
+				{LINK_TYPE_OPTIONS}
+				</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="lnktpmov">{L_LINK_TYPE_MOVE}:</label><br /><span>{L_LINK_TYPE_MOVE_EXPLAIN}</span></dt>
+				<dd><select id="lnktpmov" name="lnktpmov">
+				{LINK_TYPE_OPTIONS}
+				</select></dd>
+			</dl>						
+		</fieldset>
+	</div>		
+	
+	
+	
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

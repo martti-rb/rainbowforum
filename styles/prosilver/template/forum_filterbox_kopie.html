@@ -1,0 +1,120 @@
+
+<!-- IF S_FILTERBOX -->
+
+<div class="filter-box radius-div">
+
+<div class="filter-box-header">{L_FILTERS} 
+	<!-- IF S_HIDE_FILTERS_ENABLE -->
+	<a href="{S_HIDE_FILTERS_ACTION}" style="cursor:pointer;">
+	<!-- IF S_HIDE_FILTERS -->{L_SHOW}<!-- ELSE -->{L_HIDE}<!-- ENDIF -->
+	</a>
+	<!-- ENDIF -->
+</div>
+
+<!-- IF not S_HIDE_FILTERS -->
+
+					
+						
+<!-- archive mod begin -->
+
+<!-- IF S_FORUM_IS_ARCHIVE -->
+	<form method="post" id="archivefilterbox" action="{S_ARCHIVE_ACTION}">
+		<fieldset class="t-filter">
+		<dl>
+			<dt><label for="archf">{L_FILTER_ARCHIVED_FROM}</label></dt>
+			<dd><select name="archf" id="archf" onchange="document.forms['archivefilterbox'].submit();">
+				{ARCHIVE_OPTIONS}
+				</select>
+				<input type="submit" value="{L_GO}" class="button2" /></dd>
+		</dl>
+		</fieldset>
+	</form>
+<!-- ENDIF -->
+
+<!-- archive mod end --> 
+
+<!-- topic title prefix mod begin --> 
+
+<!-- IF S_PREFIX_FILTER -->
+	<form method="post" id="prefix_filter" action="{S_PREFIX_FILTER_ACTION}">
+		<fieldset class="t-filter">
+		<dl>
+			<dt><label for="ttp">{L_PREFIX_FILTER}:</label></dt>
+			<dd>
+				<select name="ttp" id="ttp" onchange="document.forms['prefix_filter'].submit()">
+					{PREFIX_OPTIONS}
+				</select>
+				<input type="submit" value="{L_GO}" class="button2" />
+			</dd>
+		</dl>
+		</fieldset>
+	</form>
+<!-- ENDIF --> 
+
+<!-- topic title prefix mod end -->
+
+<!-- calendar mod begin -->
+ 
+<!-- IF S_CALENDAR_FILTER -->
+	<form method="post" id="calendar_filter" action="{S_CALENDAR_FILTER_ACTION}">
+		<fieldset class="t-filter">
+		<dl>
+			<dt><label for="cf">{L_CALENDAR_FILTER}:</label></dt>
+			<dd>
+				<select name="cf" id="cf" onchange="document.forms['calendar_filter'].submit()">
+					{CALENDAR_FILTER_OPTIONS}
+				</select>
+				<input type="submit" value="{L_GO}" class="button2" />
+			</dd>
+		</dl>
+		</fieldset>
+	</form>
+<!-- ENDIF -->
+
+<!-- calendar mod end -->
+
+<!-- locations mod begin -->
+
+<!-- IF S_LOCATION_FILTER -->
+	<form method="post" id="location_filter" action="{S_LOCATION_FILTER_ACTION}">
+		<fieldset class="t-filter">
+		<dl>
+			<dt><label for="locf">{L_LOCATION_FILTER}:</label></dt>
+			<dd>
+				<select name="locf" id="locf" onchange="document.forms['location_filter'].submit()">
+					{LOCATION_FILTER_OPTIONS}
+				</select>
+				<input type="submit" value="{L_GO}" class="button2" />
+			</dd>
+		</dl>
+		</fieldset>
+	</form>
+<!-- ENDIF -->
+
+<!-- locations mod end -->
+
+<!-- IF S_SELECT_SORT_DAYS and not S_DISPLAY_ACTIVE -->
+	<form method="post" id="sort_days" action="{S_FORUM_ACTION}">
+		<fieldset class="t-filter">
+	<!-- IF not S_IS_BOT -->
+		<dl>
+			<dt><label>{L_DISPLAY_TOPICS}:</label></dt>
+			<dd>
+			{S_SELECT_SORT_DAYS}
+			{L_SORT_BY} {S_SELECT_SORT_KEY}	
+			{S_SELECT_SORT_DIR}
+			<input type="submit" name="sort" value="{L_GO}" class="button2" />
+			</dd>			
+		</dl>	
+	<!-- ENDIF -->
+		</fieldset>
+	</form>
+<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+</div>
+
+<!-- ENDIF -->
+
+

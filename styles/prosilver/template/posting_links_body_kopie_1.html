@@ -1,0 +1,511 @@
+<div class="panel bg3 radius-div" id="links-panel">
+	<div class="inner">	
+	<fieldset class="fields2">
+		<div class="panel bg1 radius-div" id="link_preselect">
+			<h3>{L_ATTACH_LINK_PRESELECT}	
+			[<a style="cursor:pointer;">{L_RESET}</a>]
+			</h3>
+
+			<dl>
+				<dt><label for="link_image">{L_LINK_IMAGE_FILTER}:</label></dt>
+				<dd>
+					<select name="link_image" id="link_image">
+						{LINK_IMAGE_FILTER_OPTIONS}
+					</select>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt><label for="link_status">{L_LINK_STATUS_FILTER}:</label></dt>
+				<dd>
+					<select name="link_status" id="link_status">
+						{LINK_STATUS_FILTER_OPTIONS}
+					</select>
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt><label for="link_type">{L_LINK_TYPE_FILTER}:</label></dt>
+				<dd>
+					<select name="link_type" id="link_type">
+						{LINK_TYPE_FILTER_OPTIONS}
+					</select>
+				</dd>
+			</dl>			
+			
+			<dl>
+				<dt><label for="link_source">{L_LINK_SOURCE_FILTER}:</label></dt>
+				<dd>
+					<select name="link_source" id="link_source">
+						{LINK_SOURCE_FILTER_OPTIONS}
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt><label for="link_forum">{L_LINK_FORUM_FILTER}:</label></dt>
+				<dd>
+					<select name="link_forum" id="link_forum">
+						{LINK_FORUM_FILTER_OPTIONS}
+					</select>
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt><label for="link_loc">{L_LINK_LOCATION_FILTER}:</label></dt>
+				<dd>
+					<select name="link_loc" id="link_loc">
+						{LINK_LOCATION_FILTER_OPTIONS}
+					</select>
+				</dd>
+			</dl>
+	
+		</div>
+	
+		<dl>
+			<dt><label for="attlink">{L_SELECT_LINK}:</label></dt>
+			<dd>
+				<select name="attlink[]" id="attlink" onchange="">
+					{LINK_OPTIONS}
+				</select>
+			</dd>
+		</dl>
+
+	</fieldset>	
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+//
+
+
+
+function links_preselect()
+{
+	this.text_ary = new Array(); 
+	this.val_ary = new Array();
+	this.st_index_all = new Array();
+	this.filtered_num = 0;
+	this.ref_index_ary = new Array();
+
+	this.loc = new links_filter(this ,document.getElementById('link_loc'));
+	this.image = new links_filter(this ,document.getElementById('link_image'));
+	this.stat = new links_filter(this, document.getElementById('link_status'));
+	this.type = new links_filter(this, document.getElementById('link_type'));
+	this.source = new links_filter(this, document.getElementById('link_source'));
+	this.forum = new links_filter(this, document.getElementById('link_forum'));
+	
+	this.filters = [this.loc, this.image, this.stat, this.type, this.source, this.forum];	
+
+	this.loc.set_ary_loc([{LINK_A_LOC_ARY}], [{LINK_B_LOC_ARY}], [{LINK_C_LOC_ARY}]);
+	this.image.set_ary_im([{LINK_IMAGE_ARY}]);
+	this.stat.set_ary_ind([{LINK_STATUS_ARY}]);
+	this.type.set_ary_ind([{LINK_TYPE_ARY}]);
+	this.source.set_ary_ind([{LINK_SOURCE_ARY}]);
+	this.forum.set_ary_ind([{LINK_FORUM_ARY}]);
+	this.forum.set_ary_parent_forum([{LINK_FORUM_PARENT_ARY}]);
+
+	this.link = document.getElementById('attlink');
+
+	this.text_ary.push(this.link.options[0].text);
+	this.val_ary.push(this.link.options[0].value);
+
+	for (var i = 1; i < this.link.options.length; i++)
+	{
+		this.text_ary.push(this.link.options[i].text);
+		this.val_ary.push(this.link.options[i].value);
+		this.st_index_all.push(i);
+	}
+
+	for (i = 0; i < this.filters.length; i++)
+	{
+		this.filters[i].set_text_st();
+	}
+	
+}
+
+links_preselect.prototype.rewrite_links = function(index_ary)
+{
+	var store_val = this.link.value;
+	var index = 0;
+	
+	this.link.options.length = 1;
+	
+	for (var i = 0; i < index_ary.length; i++)
+	{
+		this.link.options.add(new Option(this.text_ary[index_ary[i]], this.val_ary[index_ary[i]]));		index = (this.val_ary[index_ary[i]] === store_val) ? i + 1 : index;
+	}
+
+	this.link.options.selectedIndex = index;
+}
+
+links_preselect.prototype.count_filtered = function()
+{
+	this.filtered_num = 0;
+	
+	for(var i = 0; i < this.filters; i++)
+	{
+		this.filtered_num = (this.filters[i].select.selectedIndex) ? this.filtered_num++ : this.filtered_num;
+	}
+}
+
+links_preselect.prototype.recalc = function()
+{
+
+	this.loc.yloc();
+	this.image.im();
+	this.stat.ind();
+	this.type.ind();
+	this.source.ind();
+	this.forum.ind();
+	this.forum.pforum();
+}	
+
+function links_filter(owner, select)
+{
+	this.select = select;
+	this.owner = owner;
+	this.select.owner = owner;
+	this.select.parent = this;
+	
+	this.text_ary = new Array(this.select.options.length);
+	this.index_ary = new Array(this.select.options.length);
+	this.st_index_ary = new Array(this.select.options.length);
+	
+	for(var op = 0; op < this.select.options.length; op++)
+	{
+		this.text_ary[op] = this.select.options[op].text;
+		this.st_index_ary[op] = new Array();
+		this.index_ary[op] = new Array();
+	}
+
+	this.select.selectedIndex = 0;
+}	
+
+links_filter.prototype.set_ary_ind = function(link_ary)
+{
+	this.link_ary = link_ary;
+
+	for(var i = 1; i < this.link_ary.length; i++)
+	{
+		var n = (this.link_ary[i]) ? 2 : 1;
+		this.st_index_ary[n].push(i);
+		
+		if (this.link_ary[i])
+		{
+			this.st_index_ary[this.link_ary[i]].push(i);
+		}
+	}
+};
+
+links_filter.prototype.ind = function()
+{
+	for(var i = 0; i < this.owner.ref_index_ary.length; i++)
+	{
+		var n = (link_ary[this.owner.ref_index_ary[i]]) ? 2 : 1;
+		this.index_ary[n].push(this.owner.ref_index_ary[i]);
+		
+		if (this.link_ary[i])
+		{
+			this.index_ary[this.link_ary[this.owner.ref_index_ary[i]]].push(this.owner.ref_index_ary[i]);
+		}
+	}
+};
+
+links_filter.prototype.set_ary_im = function(link_ary)
+{
+	this.link_ary = link_ary;
+
+	for(var i = 1; i < this.link_ary.length; i++)
+	{
+		var n = (this.link_ary[i]) ? 2 : 1;
+		this.st_index_ary[n].push(i);
+	}
+};
+
+links_filter.prototype.im = function()
+{
+	for(var i = 0; i < this.owner.ref_index_ary.length; i++)
+	{
+		var n = (this.link_ary[this.owner.ref_index_ary[i]]) ? 2 : 1;
+		this.index_ary[n].push(this.owner.ref_index_ary[i]);
+	}
+};
+
+//	document.getElementById('test').innerHTML = link_ary;	
+
+
+links_filter.prototype.set_ary_parent_forum = function(parent_forum_ary)
+{
+	this.parent_forum_ary = parent_forum_ary;
+	
+	for(var i = 1; i < this.parent_forum_ary.length; i++)
+	{
+		if (this.parent_forum_ary[i])
+		{
+			this.st_index_ary[this.parent_forum_ary[i]].push(i);
+		}
+	}	
+};
+
+links_filter.prototype.pforum = function()
+{
+	for(var i = 0; i < this.owner.ref_index_ary.length; i++)
+	{
+		if (this.parent_forum_ary[this.owner.ref_index_ary[i]])
+		{
+			this.index_ary[this.parent_forum_ary[this.owner.ref_index_ary[i]]].push(this.owner.ref_index_ary[i]);
+		}
+	}
+};
+
+links_filter.prototype.set_ary_loc = function(link_loc_a_ary, link_loc_b_ary, link_loc_c_ary)
+{
+	this.link_ary = this.loc_a_ary = link_loc_a_ary;
+	this.loc_b_ary = link_loc_b_ary;	
+	this.loc_c_ary = link_loc_c_ary;
+	this.loc_a_length = 0;
+	
+	this.link_a_ary = new Array(link_loc_glue.a_length);
+	
+	for(var i = 1; i < this.loc_a_ary.length; i++)
+	{
+		var n = (this.loc_a_ary[i]) ? 2 : 1;
+		this.st_index_ary[n].push(i);
+	}
+
+	for (i = 0; i < link_loc_glue.a_length; i++)
+	{
+		this.link_a_ary[i] = new Array();
+	}
+	
+	for (i = 0; i < this.loc_a_ary.length; i++)
+	{
+		this.link_a_ary[this.loc_a_ary[i]].push(i);
+	}
+
+	this.loc_change();
+	
+};
+
+links_filter.prototype.yloc = function()
+{
+	for(var i = 0; i < this.owner.ref_index_ary.length; i++)
+	{
+		var n = (this.loc_a_ary[this.owner.ref_index_ary[i]]) ? 2 : 1;
+		this.index_ary[n].push(this.owner.ref_index_ary[i]);
+	}
+
+	for(i = 0; i < this.owner.ref_index_ary.length; i++)
+	{
+		var n = (this.loc_a_ary[this.owner.ref_index_ary[i]]) ? 2 : 1;
+		this.index_ary[n].push(this.owner.ref_index_ary[i]);
+	}
+
+
+
+	
+		if (link_loc_glue.c_index && 
+			link_loc_glue.c_index == this.loc_c_ary[this.owner.ref_index_ary[i]])
+		{
+			this.index_ary[3].push(this.owner.ref_index_ary[i]);
+			this.index_ary[4].push(this.owner.ref_index_ary[i]);			
+			continue;
+		}
+		
+		if (!link_loc_glue.a_index)
+		{
+			this.index_ary[3].push(this.owner.ref_index_ary[i]);
+			this.index_ary[4].push(this.owner.ref_index_ary[i]);
+			continue;
+		}
+		
+		
+		
+		if (link_loc_glue.a_index == this.loc_a_ary[this.owner.ref_index_ary[i]])
+		{
+			this.index_ary[3].push(this.owner.ref_index_ary[i]);
+			
+			if (link_loc_glue.b_index)
+			{
+			
+			
+			
+			}
+			
+			
+			if (link_loc_glue.b_index == this.loc_b_ary[this.owner.ref_index_ary[i]])
+			{
+				
+			
+			
+			}
+			
+			
+			
+		}	
+	}
+	
+
+};
+
+
+links_filter.prototype.loc_change = function()
+{
+	this.st_index_ary[3] = (link_loc_glue.a_index) ? this.link_a_ary[link_loc_glue.a_index].slice() : new Array();
+	
+	if (link_loc_glue.b_index)
+	{
+		if (link_loc_glue.c_index)
+		{
+			for (var i = 0; i < this.st_index_ary[3].length; i++)
+			{
+				if (link_loc_glue.c_index == this.loc_c_ary[this.st_index_ary[3][i]])
+				{
+					this.st_index_ary[4].push(this.st_index_ary[3][i]);			
+				}
+
+			}		
+		
+		}
+		else
+		{
+			for (i = 0; i < this.st_index_ary[3].length; i++)
+			{
+				if (link_loc_glue.b_index == this.loc_b_ary[this.st_index_ary[3][i]])
+				{
+					this.st_index_ary[4].push(this.st_index_ary[3][i]);			
+				}
+
+			}
+		}
+	}
+	else
+	{
+		this.st_index_ary[4] = this.st_index_ary[3].slice();
+	}
+};
+
+
+
+
+
+
+links_filter.prototype.set_text_st = function()
+{
+	for (var i = 1; i < this.select.options.length; i++)
+	{
+		if (this.st_index_ary[i].length)
+		{
+			this.select.options[i].text = this.text_ary[i] + ' (' + this.st_index_ary[i].length + ')';
+		}
+		else
+		{
+			this.select.options[i].disabled = true;
+		}
+	}
+	
+	this.select.options[0].text = this.text_ary[0] + ' (' + (this.link_ary.length - 1) + ')';
+	this.select.onchange = this.change;
+};
+
+links_filter.prototype.change = function()
+{
+	this.owner.count_filtered();
+
+	if (this.owner.filtered_num > 1)
+	{
+		var ary = this.parent.index_ary[this.selectedIndex];
+	}
+	else
+	{
+	
+		if (this.selectedIndex)
+		{
+			ary = this.parent.st_index_ary[this.selectedIndex];
+		}
+		else
+		{
+			ary = this.owner.st_index_all;
+		}
+	}
+	
+	if (this.owner.filtered_num)
+	{
+		var index_ary = (this.owner.filtered_num == 1) ? this.parent.st_index_ary[this.parent.select.selectedIndex] : this.parent.index_ary[this.parent.select.selectedIndex];
+		
+		for (var i = 0; i < this.owner.filters.length; i++)
+		{
+			if (this.owner.filters[i] == this.parent)
+			{
+			
+			}
+			else
+			{
+				for (var ii = 0; ii < index_ary.length; ii++)
+				{
+				//	this.owner.filters[i].index_ary
+				
+				
+				
+				}
+			}
+		
+		}
+	}
+	
+	this.owner.rewrite_links(ary)	
+};
+
+//
+
+
+function link_loc_glue()
+{
+	link_loc_glue.links_preselect = new links_preselect();
+	link_loc_glue.loc_pre = link_loc_glue.links_preselect.loc;
+	link_loc_glue.locked = true;
+}
+
+link_loc_glue.set_loc = function(loc)
+{
+	link_loc_glue.loc = loc;
+	link_loc_glue.a_length = loc.loc.a.options.length;
+	link_loc_glue.a_index = loc.a_index;
+	link_loc_glue.b_index = loc.b_index;
+	link_loc_glue.c_index = loc.c_index;
+}
+
+link_loc_glue.change = function()
+{
+	link_loc_glue.a_index = loc.a_index;
+	link_loc_glue.b_index = loc.b_index;
+	link_loc_glue.c_index = loc.c_index;
+	
+	if (link_loc_glue.locked)
+	{
+		return;
+	}
+
+	//
+	alert(link_loc_glue.loc.a_index + ', ' + link_loc_glue.loc.b_index + ', ' + link_loc_glue.loc.c_index + ', ' + link_loc_glue.loc_pre);
+}
+
+link_loc_glue.unlock = function()
+{
+	link_loc_glue.locked = false;
+}
+
+
+
+onload_functions.push('link_loc_glue()');
+
+</script> 
+
+
+
+
+
+
+

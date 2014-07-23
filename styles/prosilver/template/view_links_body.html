@@ -1,0 +1,74 @@
+
+<!-- BEGIN topicrow -->
+<!-- IF topicrow.S_FIRST_ROW --></div><!-- ENDIF -->
+
+<!-- IF not topicrow.S_POST_ANNOUNCE and not topicrow.S_POST_GLOBAL -->
+
+		
+
+<div class="link-box radius-div" style="background-color:{topicrow.COLOR_BG};">
+
+<div>
+
+<!-- IF topicrow.TOPIC_TITLE_THUMB -->
+<div style="float:left;">
+<!-- IF topicrow.U_LINK_URL -->
+<a href="{topicrow.U_LINK_URL}" target="_blank">{topicrow.TOPIC_TITLE_THUMB}</a>
+<!-- ELSE -->
+{topicrow.TOPIC_TITLE_THUMB}
+<!-- ENDIF -->
+</div>
+<div style="float:left;padding-left:20px;padding-top:10px;">
+<!-- ENDIF -->
+
+<h2><a href="{topicrow.U_VIEW_TOPIC}">
+{topicrow.TOPIC_FOLDER_IMG}
+{topicrow.TITLE_PREFIX}
+{topicrow.TOPIC_TITLE}</a>
+<!-- IF topicrow.DATE_SUFFIX -->[<a href="{topicrow.U_CALENDAR_TOPIC}" >{topicrow.DATE_SUFFIX}</a>]<!-- ENDIF --> 
+<!-- IF topicrow.LINK_STATUS_TEXT --><em class="{topicrow.LINK_STATUS_CLASS}">[{topicrow.LINK_STATUS_TEXT}]</em><!-- ENDIF -->
+</h2>
+
+
+<!-- IF S_LINKS_FORUM -->
+<h4><a href="{topicrow.U_LINK_URL}" target="_blank">{topicrow.U_LINK_URL}</a></h4>
+<!-- IF topicrow.LINK_TYPE_SOURCE_STR --><p>{topicrow.LINK_TYPE_SOURCE_STR}</p><!-- ENDIF -->
+<!-- IF topicrow.LINK_FORUM_STR --><p>{topicrow.LINK_FORUM_STR}</p><!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- IF topicrow.LOCATION_TAG_STRING -->
+	<p>{topicrow.LOCATION_TAG_STRING}</p>
+<!-- ENDIF -->
+
+
+<!-- IF topicrow.TOPIC_TITLE_THUMB -->
+</div>
+<div class="clear"></div>
+<!-- ENDIF -->
+</div>
+</div>
+
+<!-- ENDIF -->
+
+<!-- IF topicrow.S_LAST_ROW --><div class="uni-box radius-div"><!-- ENDIF -->
+
+<!-- BEGINELSE -->
+	<!-- IF S_IS_POSTABLE -->
+	<div class="panel radius-div">
+		<div class="inner">
+		<strong>	
+		{TLC_NO_TOPICS}   
+		</strong>
+		</div>
+	</div>
+	<!-- ENDIF -->	
+	
+<!-- END topicrow -->
+
+
+
+
+
+
+
+

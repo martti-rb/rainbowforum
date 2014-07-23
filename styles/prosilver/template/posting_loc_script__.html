@@ -1,0 +1,203 @@
+
+<script type="text/javascript">
+// <![CDATA[
+
+var loc_b_parent_ids_ary = [{SCRIPT_LOC_B_PARENT_IDS_ARY}];
+var loc_c_parent_ids_ary = [{SCRIPT_LOC_C_PARENT_IDS_ARY}];
+var loc_b_has_children_ary = [{SCRIPT_LOC_B_HAS_CHILDREN_ARY}];
+
+var loc_b_parent_index_ary = [{SCRIPT_LOC_B_PARENT_INDEX_ARY}];
+var loc_c_parent_index_ary = [{SCRIPT_LOC_C_PARENT_INDEX_ARY}];
+
+var loc_ary = [{SCRIPT_LOC_ARY}];
+var loc_max{SCRIPT_LOC_MAX};
+var loc_num = 1;
+var last_loc;
+var first_loc;
+var loc_b_model;
+var loc_c_model;
+
+var first_oE;
+
+onload_functions.push('on_load_location_input()');
+
+function loc()
+{
+	if (!first_oE)
+	{
+		first_oE = document.getElementById('locdl0');
+		first_oE.id = null;		
+	}
+	
+	first_oE
+	
+
+
+	
+}
+
+
+
+
+
+
+
+function on_load_location_input()
+{
+	var loc = document.getElementById('locdl0');
+	loc.id = null;
+
+	add_loc_references(loc);
+	
+	first_loc = loc;
+	loc_b_model = loc.b.cloneNode(true);
+	loc_c_model = loc.c.cloneNode(true);
+	
+	create_loc_selects(loc);
+
+	loc.index = 0;
+	loc.prev = null;
+	loc.next = null;	
+}
+
+function add_loc_references(loc)
+{
+
+	loc.dt = loc.childNodes[0]; 	
+	loc.dd = loc.childNodes[1];
+	loc.lab = loc.dt.childNodes[0];
+	loc.a = loc.dd.childNodes[0];
+	loc.b = loc.dd.childNodes[1];
+	loc.c = loc.dd.childNodes[2];
+	loc.loc_add = loc.dd.childNodes[3];
+	
+	loc.a.loc = loc;
+	loc.b.loc = loc;
+	loc.c.loc = loc;
+
+	loc.loc_add.loc = loc;
+	
+	last_loc = loc;
+	loc.last = true;	
+}
+
+function create_loc_selects(loc)
+{
+	loc.b_selects = new Array()
+	loc.b_selects[0] = loc_b_model.cloneNode(true);	
+	
+	var loc_b_empty = loc_b_model.cloneNode(true);
+	loc_b_empty.options.length = 1;
+		
+	loc.c.options.length = 1;
+
+	for (var i = 1; i < first_loc.a.options.length; i++)
+	{
+		loc.b_selects[i] = loc_b_empty.cloneNode(true);
+	}
+
+	for (i = 1; i < loc_b_model.options.length; i++)
+	{	
+		var loc_b_options = loc.b_selects[loc_b_parent_index_ary[i]].options	
+		loc_b_options.add(new Option(loc_b_model.options[i].text, loc_b_model.options[i].value));
+		var loc_b_last_option = loc_b_options[loc_b_options.length - 1];
+		loc_b_last_option.original_index = i;	
+		loc_b_last_option.has_children = (loc_b_has_children_ary[i]) ? true : false;
+	}
+
+	
+}
+
+function insert_new_location(loc)
+{
+	loc.loc_add.style.display = 'none';
+
+	var new_loc = first_loc.cloneNode(true);
+	
+	document.getElementById('fields_post_edit').insertBefore(new_loc, document.getElementById('loc_ins'));	
+}
+
+function add_location(loc_add)
+{
+	var loc = loc_add.loc;
+	insert_new_location(loc);
+//	document.getElementById('loc_add').style.display = 'none';
+}
+
+
+
+
+
+
+
+
+function loc_a_change(loc_a)
+{
+	var loc = loc_a.loc;
+	loc.dd.replaceChild(loc.b_selects[loc.a.selectedIndex], loc.b);
+	loc.b = loc.b_selects[loc.a.selectedIndex];
+	loc.b.loc = loc;
+	loc.b.value = 0;
+	loc.c.style.display = 'none';
+	
+	check_add_location_link(loc);	
+}
+
+function loc_b_change(loc_b)
+{
+	var loc = loc_b.loc;
+	
+	if (!loc.a.selectedIndex)
+	{
+		loc.a.selectedIndex = loc_b_parent_index_ary[loc.b.selectedIndex];	
+		var store_loc_b_value = loc.b.value;				
+		loc.dd.replaceChild(loc.b_selects[loc.a.selectedIndex], loc.b);
+		loc.b = loc.b_selects[loc.a.selectedIndex];
+		loc.b.loc = loc;
+		loc.b.value = store_loc_b_value;	
+	}
+
+	loc.c.options.length = 1;	
+	
+	var option_b = loc.b.options[loc.b.selectedIndex];	
+
+	if (option_b.has_children)
+	{
+		loc.c.style.display = 'inline';				
+		loc.c.options.length = 1;
+	
+		for (var i = 1; i < loc.c_copy.options.length; i++)
+		{
+			if (option_b.original_index == loc_c_parent_index_ary[i])
+			{
+				loc.c.options.add(new Option(loc.c_copy.options[i].text, loc.c_copy.options[i].value))
+			}
+		}
+	}
+	else
+	{
+		loc.c.style.display = 'none';							
+	}
+	
+	check_add_location_link(loc);
+}
+
+function loc_c_change(loc_c)
+{
+}
+
+function check_add_location_link(loc)
+{
+	if (loc.b.selectedIndex && loc.a.selectedIndex)
+	{
+		loc.loc_add.style.display = 'inline';
+	}
+	else
+	{
+		loc.loc_add.style.display = 'none';
+	}
+}
+
+
+// ]]>
+</script>

@@ -1,0 +1,161 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<form id="calendar_edit" method="post" action="{U_EDIT_ACTION}">
+
+	<div id="calendar_general_settings">
+		<fieldset>
+			<legend>{L_CALENDAR_GENERAL_SETTINGS}</legend>
+			<dl>
+				<dt><label for="calendar_enable">{L_CALENDAR_ENABLE}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="calendar_enable" value="1"<!-- IF S_CALENDAR_ENABLE --> id="calendar_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="calendar_enable" value="0"<!-- IF not S_CALENDAR_ENABLE --> id="calendar_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>
+			<dl>
+				<dt><label for="calendar_birthdays">{L_CALENDAR_BIRTHDAYS}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="calendar_birthdays" value="1"<!-- IF S_CALENDAR_BIRTHDAYS --> id="calendar_birthdays" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="calendar_birthdays" value="0"<!-- IF not S_CALENDAR_BIRTHDAYS --> id="calendar_birthdays" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>
+	
+		</fieldset>
+	</div>
+	
+	<div id="calendar_display_suffix">
+		<fieldset>
+			<legend>{L_CALENDAR_DISPLAY_SUFFIX}</legend>
+			<dl>
+				<dt><label for="calendar_enable_suffix">{L_CALENDAR_ENABLE_SUFFIX}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="calendar_enable_suffix" value="1"<!-- IF S_CALENDAR_ENABLE_SUFFIX --> id="calendar_enable_suffix" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="calendar_enable_suffix" value="0"<!-- IF not S_CALENDAR_ENABLE_SUFFIX --> id="calendar_enable_suffix" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>				
+			<dl>
+				<dt><label for="calendar_suffix_context">{L_CALENDAR_SUFFIX_CONTEXT}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="calendar_suffix_context" value="1"<!-- IF S_CALENDAR_SUFFIX_CONTEXT --> id="calendar_suffix_context" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="calendar_suffix_context" value="0"<!-- IF not S_CALENDAR_SUFFIX_CONTEXT --> id="calendar_suffix_context" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>
+			<dl>
+				<dt><label for="calendar_multi_suffix">{L_CALENDAR_MULTI_SUFFIX}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="calendar_multi_suffix" value="1"<!-- IF S_CALENDAR_MULTI_SUFFIX --> id="calendar_multi_suffix" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="calendar_multi_suffix" value="0"<!-- IF not S_CALENDAR_MULTI_SUFFIX --> id="calendar_multi_suffix" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>
+			<dl>
+				<dt><label for="calendar_month_abbrev">{L_CALENDAR_MONTH_ABBREV}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="calendar_month_abbrev" value="1"<!-- IF S_CALENDAR_MONTH_ABBREV --> id="calendar_month_abbrev" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="calendar_month_abbrev" value="0"<!-- IF not S_CALENDAR_MONTH_ABBREV --> id="calendar_month_abbrev" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>			
+		</fieldset>
+	</div>
+
+	<div id="calendar_filter">
+		<fieldset>
+			<legend>{L_CALENDAR_FILTER}</legend>
+			<dl>
+				<dt><label for="calendar_enable_filter">{L_CALENDAR_ENABLE_FILTER}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="calendar_enable_filter" value="1"<!-- IF S_CALENDAR_ENABLE_FILTER --> id="calendar_enable_filter" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="calendar_enable_filter" value="0"<!-- IF not S_CALENDAR_ENABLE_FILTER --> id="calendar_enable_filter" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>							
+		</fieldset>
+	</div>		
+
+	<div id="calendar_input_forums">
+		<fieldset>			
+			<legend>{L_CALENDAR_INPUT_FORUMS_SELECT}</legend>
+			<dl>
+				<dt><label for="calendar_input_forums">{L_CALENDAR_INPUT_FORUMS}:</label><br /><span>{L_CALENDAR_INPUT_FORUMS_EXPLAIN}</span></dt>
+				<dd><select id="calendar_input_forums" name="f[]" multiple="multiple" size="30">{S_CALENDAR_INPUT_FORUMS_OPTIONS}</select></dd>				
+			</dl>
+			<dl>
+				<dd><label><input type="checkbox" class="radio" name="all_forums" value="1" /> {L_ALL_FORUMS}</label></dd>
+			</dl>			
+			<dl>
+				<dt><label for="calendar_max_periods">{L_CALENDAR_MAX_PERIODS}:</label><br /><span>{L_CALENDAR_MAX_PERIODS_EXPLAIN}</span></dt>
+				<dd><input type="text" id="calendar_max_periods" name="calendar_max_periods" value="{VALUE_CALENDAR_MAX_PERIODS}" size="4" maxlength="4" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="calendar_max_period_length">{L_CALENDAR_MAX_PERIOD_LENGTH}:</label><br /><span>{L_CALENDAR_MAX_PERIOD_LENGTH_EXPLAIN}</span></dt>
+				<dd><input type="text" id="calendar_max_period_length" name="calendar_max_period_length" value="{VALUE_CALENDAR_MAX_PERIOD_LENGTH}" size="4" maxlength="4" /></dd>
+			</dl>
+			
+			<dl>
+				<dt><label for="calendar_min_start">{L_CALENDAR_MIN_START}:</label><br /><span>{L_CALENDAR_MIN_START_EXPLAIN}</span></dt>
+				<dd><input type="text" id="calendar_min_start" name="calendar_min_start" value="{VALUE_CALENDAR_MIN_START}" size="4" maxlength="4" /></dd>
+			</dl>				
+			<dl>
+				<dt><label for="calendar_plus_start">{L_CALENDAR_PLUS_START}:</label><br /><span>{L_CALENDAR_PLUS_START_EXPLAIN}</span></dt>
+				<dd><input type="text" id="calendar_plus_start" name="calendar_plus_start" value="{VALUE_CALENDAR_PLUS_START}" size="4" maxlength="4" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="calendar_min_gap">{L_CALENDAR_MIN_GAP}:</label><br /><span>{L_CALENDAR_MIN_GAP_EXPLAIN}</span></dt>
+				<dd><input type="text" id="calendar_min_gap" name="calendar_min_gap" value="{VALUE_CALENDAR_MIN_GAP}" size="4" maxlength="4" /></dd>
+			</dl>				
+			<dl>
+				<dt><label for="calendar_max_gap">{L_CALENDAR_MAX_GAP}:</label><br /><span>{L_CALENDAR_MAX_GAP_EXPLAIN}</span></dt>
+				<dd><input type="text" id="calendar_max_gap" name="calendar_max_gap" value="{VALUE_CALENDAR_MAX_GAP}" size="4" maxlength="4" /></dd>
+			</dl>
+			
+			<dl>
+				<dt><label for="calendar_preset">{L_CALENDAR_PRESET}:</label><br /><span>{L_CALENDAR_PRESET_EXPLAIN}</span></dt>
+				<dd><label><input type="radio" class="radio" name="calendar_preset" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="calendar_preset" value="0" id="calendar_preset" checked="checked"/> {L_NO}</label></dd>
+			</dl>			
+					
+			<table cellspacing="1" id="down">
+			<thead>
+			<tr>
+				<th>{L_FORUM}</th>
+				<th>{L_MAX_PERIODS}</th>
+				<th>{L_MAX_PERIOD_LENGTH}</th>
+				<th>{L_MIN_START}</th>				
+				<th>{L_MAX_START}</th>
+				<th>{L_MIN_GAP}</th>				
+				<th>{L_MAX_GAP}</th>
+				<th>{L_PRESET}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- BEGIN cforums -->
+				<!-- IF cforums.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+					<td style="text-align: left;">{cforums.FORUM_NAME}</td>
+					<td style="text-align: left; width: 40px;">{cforums.MAX_PERIODS}</td>
+					<td style="text-align: left; width: 40px;">{cforums.MAX_PERIOD_LENGTH}</td>
+					<td style="text-align: left; width: 40px;">{cforums.MIN_START}</td>	
+					<td style="text-align: left; width: 40px;">{cforums.PLUS_START}</td>
+					<td style="text-align: left; width: 40px;">{cforums.MIN_GAP}</td>
+					<td style="text-align: left; width: 40px;">{cforums.MAX_GAP}</td>
+					<td style="text-align: left; width: 40px;"><!-- IF cforums.S_PRESET -->x<!-- ELSE -->&nbsp;<!-- ENDIF --></td>						
+				</tr>
+			<!-- BEGINELSE -->
+				<tr class="row3">
+					<td colspan="2">{L_ACP_NO_ITEMS}</td>
+				</tr>
+			<!-- END cforums -->
+			</tbody>
+			</table>
+	
+		</fieldset>
+	</div>
+
+	
+	<div id="calendar_page_forum_display">
+		<fieldset>
+			<legend>{L_CALENDAR_PAGE_FORUMS_DISPLAY}</legend>
+			<dl>
+				<dt><label for="enable_icons">{L_ENABLE_TOPIC_ICONS}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="enable_icons" value="1"<!-- IF S_TOPIC_ICONS --> id="enable_icons" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="enable_icons" value="0"<!-- IF not S_TOPIC_ICONS --> id="enable_icons" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>
+		</fieldset>
+	</div>	
+	
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

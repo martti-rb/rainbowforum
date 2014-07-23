@@ -1,0 +1,16 @@
+<?php
+
+$dbms     = 'mysql'       ;
+$dbhost   = 'localhost' ;
+$dbport   = ''            ;
+$dbname   = 'rainbowforum';
+$dbuser   = '';
+$dbpasswd = '';
+
+$table_prefix    = 'phpbb_' ;
+$acm_type        = 'file'   ;
+$load_extensions = ''       ;
+
+@define ( 'PHPBB_INSTALLED' , true ) ;
+
+?>

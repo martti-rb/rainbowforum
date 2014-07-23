@@ -1,0 +1,944 @@
+/* General Markup Styles
+---------------------------------------- */
+
+* {
+	/* Reset browsers default margin, padding and font sizes */
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 100%;
+	/* Always show a scrollbar for short pages - stops the jump when the scrollbar appears. non-IE browsers */
+	height: 101%;
+}
+
+body 
+{
+	/* Text-Sizing with ems: http://www.clagnut.com/blog/348/ */
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	color: #000;
+	background-color: #FFF;
+	/*font-size: 62.5%;			 This sets the default font size to be equivalent to 10px */
+	font-size: 10px;
+	margin: 0;
+	padding: 12px 0;
+}
+
+h1 
+{
+	/* Forum name */
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	margin: 10px 90px;      
+	color: #FFF;	
+	font-weight: bold;
+	font-size: 2em;
+}
+
+h2 
+{
+	/* Forum header titles */
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	color: #000;
+	font-size: 2.5em;
+	margin-bottom: 0.5em;
+/*	margin: 0.8em 0 0.2em 0; */
+}
+
+/*
+h2.solo 
+{
+	margin-bottom: 1em;
+}
+*/
+
+h3 
+{
+	/* Sub-headers (also used as post headers, but defined later) */
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+/*	border-bottom: 1px solid #CCCCCC; */
+	margin: 3px 0px;
+/*	padding-bottom: 2px; */
+	font-size: 1.1em;
+	color: #FFF;
+}
+
+h4 
+{
+	/* Forum and topic list titles */
+	font-family: "Trebuchet MS", Verdana, Helvetica, Arial, Sans-serif;
+	font-size: 1.3em;
+}
+
+p 
+{
+	line-height: 1.3em;
+	font-size: 1.1em;
+/*	margin-bottom: 1.5em; */
+}
+
+img 
+{
+	border-width: 0;
+}
+
+hr 
+{
+	/* Also see tweaks.css */
+	border: 0 none #FFF;
+	border-top: 1px solid #CCCCCC;
+	height: 1px;
+	margin: 5px 0;
+	display: block;
+	clear: both;
+}
+
+hr.dashed 
+{
+	border-top: 1px dashed #CCC;
+	margin: 10px 0;
+}
+
+hr.divider 
+{
+	display: none;
+}
+
+p.right 
+{
+	text-align: right;
+}
+
+/* Main blocks
+---------------------------------------- */
+#wrap 
+{
+	padding: 0 20px;
+	min-width: 650px;
+	max-width: 1300px;
+	margin: auto;
+
+}
+
+#simple-wrap 
+{
+	padding: 6px 10px;
+}
+
+#page-body 
+{
+	margin: 4px 0;
+	clear: both;
+}
+
+#page-footer 
+{
+	clear: both;
+}
+
+#page-footer h3 
+{
+	margin-top: 20px;
+}
+
+#logo 
+{
+	float: left;
+	width: auto;
+	padding: 0px 13px;
+}
+
+a#logo:hover 
+{
+	text-decoration: none;
+}
+
+/* Search box
+--------------------------------------------- */
+#search-box {
+	color: #fff;
+	margin-top: 10px;
+	margin-right: 5px;
+	text-align: right;
+	white-space: nowrap; /* For Opera */
+}
+
+#search-box #keywords {
+	width: 200px;          
+	background-color: #FFF;
+}
+
+#search-box input {
+	border: 1px solid #000;
+}
+
+/* .button1 style defined later, just a few tweaks for the search button version */
+#search-box input.button1 {
+	padding: 1px 5px;
+}
+
+#search-box li {
+	text-align: right;
+	margin-top: 4px;
+}
+
+#search-box img {
+	vertical-align: middle;
+	margin-right: 3px;
+}
+
+/* Site description and logo */
+#site-description {
+	float: left;
+	width: 50%;     
+	cursor: pointer;    /*** line added ****/
+}
+
+#site-description h1 {
+	margin-right: 0;
+}
+
+.forabg {
+	background-color: #400;
+	margin-bottom: 4px;
+	padding: 5px 5px 8px 5px;
+	clear: both;
+}
+
+.forumbg {
+	background: #400 none repeat-x 0 0;
+	margin-bottom: 4px;
+	padding: 5px 5px 8px 5px;
+	clear: both;
+}
+
+.post, .post-tcmd { 
+	padding: 0 10px;
+	margin-bottom: 4px;
+	background-repeat: no-repeat;
+	background-position: 100% 0;
+	border: 1px solid #000;
+}
+
+
+/* .post-tcmd topic color mod */
+
+
+
+.post:target .content {
+	color: #000;
+}
+
+.post:target h3 a {
+	color: #000;
+}
+
+/* topic color mod begin */
+
+div #c_examples div
+{
+	float:left;
+	width: 100px;	
+}
+
+div #c_examples div.c-example
+{
+	border: 1px solid #000;
+	font-size: 1.2em;
+	height: 28px;
+	border: 1px solid #000;
+	margin: 0 10px 7px 8px;
+	padding: 5px 20px;
+	background-color: #FD6;	
+}
+
+div #c_examples div.top-fill
+{
+	height: 10px;
+}
+
+div #c_examples{
+	float:left;
+}
+
+div #c_examples div.c-text-dark
+{
+	color: #FFF;
+}
+
+
+div #cvs
+{
+	width: 655px;
+	height: 110px;
+	position: absolute;
+}
+
+div #cslider
+{
+	width: 655px;
+	height: 100px;
+	float:left;
+}
+
+div#cvs div
+{
+	width: 640px;
+	height: 40px;
+	margin: 0 10px 7px 8px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;	
+}
+
+div #cslider div.top-fill
+{
+	height: 5px;
+	border: 0px solid #000;	
+}
+
+div.bg-topic-a {background-image: url("{T_IMAGESET_PATH}/bg_topic_a.jpg");}
+div.bg-topic-b {background-image: url("{T_IMAGESET_PATH}/bg_topic_b.jpg");}
+div.bg-topic-c {background-image: url("{T_IMAGESET_PATH}/bg_topic_c.jpg");}
+div.bg-topic-d {background-image: url("{T_IMAGESET_PATH}/bg_topic_d.jpg");}
+
+
+/* topic color mod end */
+
+
+.rowbg {
+	margin: 5px 5px 2px 5px;
+}
+
+.ucprowbg {
+	background-color: #e2e2e2;
+}
+
+.fieldsbg {
+	/*border: 1px #DBDEE2 solid;*/
+	background-color: #eaeaea;
+}
+
+
+
+/* Horizontal lists
+----------------------------------------*/
+
+div.h-box ul.linkindex
+{
+	margin-top: 5px;
+}
+
+
+ul.linklist {
+	display: block;
+	margin: 0;
+}
+
+
+
+ul.linklist li {
+	display: block;
+	list-style-type: none;
+	float: left;
+	width: auto;
+	margin-right: 5px;
+	font-size: 1.1em;
+}
+
+ul.linklist li.rightside, p.rightside {
+	float: right;
+	margin-right: 0;
+	margin-left: 5px;
+	text-align: right;
+}
+
+ul.navlinks {
+	margin-bottom: 2px;
+	font-weight: bold;
+}
+
+ul.leftside {
+	float: left;
+	margin-left: 0;
+	margin-right: 5px;
+	text-align: left;
+}
+
+ul.rightside {
+	float: right;
+	margin-left: 5px;
+	margin-right: -5px;
+	text-align: right;
+}
+
+/* Table styles
+----------------------------------------*/
+table.table1 {
+	/* See tweaks.css */
+}
+
+#ucp-main table.table1 {
+	padding: 2px;
+}
+
+table.table1 thead th {
+	font-weight: normal;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	line-height: 1.3em;
+	font-size: 1em;
+	padding: 0 0 4px 3px;
+}
+
+table.table1 thead th span {
+	padding-left: 7px;
+}
+
+table.table1 tbody tr {
+	border: 1px solid #ddd;
+}
+
+table.table1 tbody tr:hover, table.table1 tbody tr.hover {
+	background-color: #f6f6f6;
+	color: #000;
+}
+
+table.table1 td {
+	color: #777;
+	font-size: 1.1em;
+}
+
+table.table1 tbody td {
+	padding: 5px;
+	border-top: 1px solid #fff;
+}
+
+table.table1 tbody th {
+	padding: 5px;
+	border-bottom: 1px solid #000;
+	text-align: left;
+	color: #333;
+	background-color: #fff;
+}
+
+/* Specific column styles */
+table.table1 .name		{ text-align: left; }
+table.table1 .posts		{ text-align: center !important; width: 7%; }
+table.table1 .joined	{ text-align: left; width: 15%; }
+table.table1 .active	{ text-align: left; width: 15%; }
+table.table1 .mark		{ text-align: center; width: 7%; }
+table.table1 .info		{ text-align: left; width: 30%; }
+table.table1 .info div	{ width: 100%; white-space: normal; overflow: hidden; }
+table.table1 .autocol	{ line-height: 2em; white-space: nowrap; }
+table.table1 thead .autocol { padding-left: 1em; }
+
+table.table1 span.rank-img {
+	float: right;
+	width: auto;
+}
+
+table.info td {
+	padding: 3px;
+}
+
+table.info tbody th {
+	padding: 3px;
+	text-align: right;
+	vertical-align: top;
+	color: #000;
+	font-weight: normal;
+}
+
+.forumbg table.table1 {
+	margin: 0;
+}
+
+.forumbg-table > .inner {
+	margin: 0 -1px;
+}
+
+.forumbg-table > .inner > span.corners-top {
+	margin: 0 -4px -1px -4px;
+}
+
+.forumbg-table > .inner > span.corners-bottom {
+	margin: -1px -4px 0 -4px;
+}
+
+/* Misc layout styles
+---------------------------------------- */
+/* column[1-2] styles are containers for two column layouts 
+   Also see tweaks.css */
+.column1 {
+	float: left;
+	width: 49%;
+}
+
+.column2 {
+	float: right;
+	width: 49%;
+}
+
+/* General classes for placing floating blocks */
+.left-box {
+	float: left;
+	width: auto;
+	text-align: left;
+}
+
+.right-box {
+	float: right;
+	width: auto;
+	text-align: right;
+}
+
+dl.details {
+	/*font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;*/
+	font-size: 1.1em;
+}
+
+dl.details dt {
+	float: left;
+	width: 30%;
+	text-align: right;
+	color: #000;
+	display: block;
+}
+
+dl.details dd {
+	margin-left: 0;
+	padding-left: 5px;
+	margin-bottom: 5px;
+	color: #888;
+	float: left;
+	width: 65%;
+}
+
+/* Pagination
+---------------------------------------- */
+.pagination {
+	height: 1%; /* IE tweak (holly hack) */
+	width: auto;
+	text-align: right;
+	margin-top: 5px;
+	float: right;
+}
+
+.pagination span.page-sep {
+	display: none;
+}
+
+li.pagination {
+	margin-top: 0;
+}
+
+.pagination strong, .pagination b {
+	font-weight: normal;
+}
+
+.pagination span strong {
+	padding: 0 2px;
+	margin: 0 2px;
+	font-weight: normal;
+	color: #FFF;
+	background-color: #000;
+	border: 1px solid #000;
+	font-size: 1em;
+}
+
+.pagination span a, .pagination span a:link, .pagination span a:visited, .pagination span a:active 
+{
+	font-weight: normal;
+	text-decoration: none;
+	color: #000;
+	margin: 0 2px;
+	padding: 0 2px;
+	background-color: #eee;
+	border: 1px solid #000;
+	font-size: 1em;
+	line-height: 1.5em;
+}
+
+.pagination span a:hover 
+{
+	border-color: #000;
+	background-color: #000;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.pagination img 
+{
+	vertical-align: middle;
+}
+
+/* Pagination in viewforum for multipage topics */
+.row .pagination 
+{
+	display: block;
+	float: right;
+	width: auto;
+	margin-top: 0;
+	padding: 1px 0 1px 15px;
+	font-size: 1em;
+	background: none 0 50% no-repeat;
+}
+
+
+.row .pagination span a, li.pagination span a 
+{
+	background-color: #FFF;
+}
+
+.row .pagination span a:hover, li.pagination span a:hover 
+{
+	background-color: #000;
+}
+
+
+
+/* Miscellaneous styles
+---------------------------------------- */
+#forum-permissions {
+	float: right;
+	width: auto;
+	padding-left: 5px;
+	margin-left: 5px;
+	margin-top: 10px;
+	text-align: right;
+}
+
+.copyright {
+	padding: 5px;
+	text-align: center;
+	color: #000;
+}
+
+.small {
+	font-size: 0.9em !important;
+}
+
+.titlespace {
+	margin-bottom: 15px;
+}
+
+.headerspace {
+	margin-top: 20px;
+}
+
+.error {
+	color: #bcbcbc;
+	font-weight: bold;
+	font-size: 1em;
+}
+
+.reported {
+	background-color: #f7f7f7;
+}
+
+li.reported:hover {
+	background-color: #ececec;
+}
+
+div.rules 
+{
+	background-color: #339;
+	color: #FFF;
+}
+
+div.rules .inner a
+{
+	color: #FF8;
+}
+
+div.rules .inner a.postlink:hover /**/
+{
+	background-color: #523;
+	color: #BBF;
+}
+
+
+div.rules ul, div.rules ol 
+{
+	margin-left: 20px;
+}
+
+p.rules a {
+	vertical-align: middle;
+	clear: both;
+}
+
+#top {
+	position: absolute;
+	top: -20px;
+}
+
+.clear {
+	clear: both;
+	height: 0px;
+	width:80%;
+}
+
+/***
+*** design mod begin
+***/
+
+div.link-spacer{
+	height: 15px;
+}
+
+
+div.radius-div 
+{
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	clear: both;
+}
+
+div.welcome-panel, div.h-box, div.action-box, div.online-box,
+div.statistics-box, div.login-box, div.time-box, div.rules,
+div.pagination-box, div .jump-box2, div .navbar, div .headerbar,
+div.header-box, div.panel, div.filter-box, div.link-box,
+div.t50w-box, div.t40w-box, div.t30w-box, div.t20w-box, div.t10w-box,
+div.t50g-box, div.t40g-box, div.t30g-box, div.t20g-box, div.t10g-box,
+div.t50b-box, div.t40b-box, div.t30b-box, div.t20b-box, div.t10b-box,
+div.uni-box
+{
+	background-repeat: repeat;
+	margin: 0 0 4px 0;
+	padding: 10px 20px;
+	border: 1px solid #000;
+	font-size: 1.1em;
+}
+
+
+
+div.links-preselect
+{
+	margin: 0 0 4px 0;
+	padding: 10px 20px; 
+	border: 1px solid #000;
+	background-color: #CC8;
+}
+
+div.links-preselect dl
+{
+	height: 20px;
+}
+
+div.links-preselect h3
+{
+	font-size: 0.8em;
+}
+
+div.links-select{
+	margin: 0 0 4px 0;
+	padding: 10px 20px; 
+	border: 1px solid #000;
+	background-color: #88C;
+}
+
+div.headerbar { background-color: #400; }
+div.navbar { background-color: #ada;} /*#c9c; */
+
+div.welcome-panel h3
+{
+	font-size: 1.3em;
+}
+
+div.h-box { background-image: url("{T_THEME_PATH}/images/t20w.png");	}
+div.uni-box { background-color: #dd9;	} 
+
+div.t10w-box { background-image: url("{T_THEME_PATH}/images/t10w.png");}
+div.t20w-box { background-image: url("{T_THEME_PATH}/images/t20w.png");}
+div.t30w-box { background-image: url("{T_THEME_PATH}/images/t30w.png");}
+div.t40w-box { background-image: url("{T_THEME_PATH}/images/t40w.png");}
+div.t50w-box { background-image: url("{T_THEME_PATH}/images/t50w.png");}
+div.t10g-box { background-image: url("{T_THEME_PATH}/images/t10g.png");}
+div.t20g-box { background-image: url("{T_THEME_PATH}/images/t20g.png");}
+div.t30g-box { background-image: url("{T_THEME_PATH}/images/t30g.png");}
+div.t40g-box { background-image: url("{T_THEME_PATH}/images/t40g.png");}
+div.t50g-box { background-image: url("{T_THEME_PATH}/images/t50g.png");}
+div.t10b-box { background-image: url("{T_THEME_PATH}/images/t10b.png");}
+div.t20b-box { background-image: url("{T_THEME_PATH}/images/t20b.png");}
+div.t30b-box { background-image: url("{T_THEME_PATH}/images/t30b.png");}
+div.t40b-box { background-image: url("{T_THEME_PATH}/images/t40b.png");}
+div.t50b-box { background-image: url("{T_THEME_PATH}/images/t50b.png");}
+
+div.panel
+{
+	z-index:0;
+}
+
+div.action-box 
+{
+	background-image: url("{T_THEME_PATH}/images/transparant_white.png");		
+}
+
+div.online-box 
+{
+	background-image: url("{T_THEME_PATH}/images/transparant_white.png");	
+}
+
+div.statistics-box 
+{
+	background-image: url("{T_THEME_PATH}/images/transparant_white.png");	
+}
+
+div.login-box 
+{
+	background-image: url("{T_THEME_PATH}/images/transparent_yellow.png");
+}
+
+div.time-box
+{
+	background-image: url("{T_THEME_PATH}/images/transparent_web_red.png");
+	color: #FFF;
+}
+
+div.time-box a,div.pagination-box a
+{
+	color: #FF7;
+}
+
+div.time-box a:hover, div.pagination-box a:hover
+{
+	color: #DDF;
+}
+
+
+div .jump-box2 a:hover
+{
+	color: #00A;
+}
+
+
+div.pagination-box
+{
+	background-image: url("{T_THEME_PATH}/images/transparent_blue.png");
+	color: #FFF;
+}
+
+div.jump-box2
+{
+	color: #000;
+	background-color: #A9F;
+}
+
+
+div .filter-box 
+{
+	background-color: #CC8;
+}
+
+div.filter-box-header
+{
+	padding: 5px 0px;
+	margin: 0px 10px; 
+    text-transform: uppercase;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+}
+
+fieldset.t-filter dl
+{
+	text-align: left;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	height: 1.5em;
+	padding-top: 0px;
+	font-weight: bold;	
+}
+
+fieldset.t-filter dl dt 
+{
+	width: 12em;
+}
+
+fieldset.t-filter dl dd 
+{
+	margin-left: 0px;
+}
+
+
+fieldset.calendar-filter dl
+{
+	text-align: left;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	padding-top: 0px;
+	font-weight: bold;	
+}
+
+fieldset.calendar-filter dl dt 
+{
+	width: 5em;
+}
+
+fieldset.calendar-filter dl dd 
+{
+	margin-left: 0px;
+}
+
+div #calendar_input_fc
+{
+	width: 50%;
+	float: left;
+}
+
+div #calendar_input_fc select
+{
+	width: 80%;
+}
+
+fieldset.calendar-filter-2 dl
+{
+	text-align: left;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	padding-top: 0px;
+	font-weight: bold;	
+}
+
+fieldset.calendar-filter-2 dl dt 
+{
+	width: 9em;
+}
+
+fieldset.calendar-filter-2 dl dd 
+{
+	margin-left: 0px;
+}
+
+em.link-new, em.link-obsolete, em.link-broken
+{
+	font-style:italic;
+	font-weight:bold;
+}
+
+em.link-new
+{
+	color: #060;
+}
+
+em.link-obsolete
+{
+	color: #F60;
+}
+
+em.link-broken
+{
+	color: #C00;
+}
+
+/***
+*** design mod end
+***/

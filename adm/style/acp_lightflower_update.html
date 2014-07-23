@@ -1,0 +1,211 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<!-- IF S_UPDATED -->
+	<div class="successbox">
+		<h3>{L_NOTIFY}</h3>
+		<p>{L_LIGHTFLOWER_UPDATE_SUCCESSFUL}</p>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_COMPLETED -->
+	<div class="successbox">
+		<h3>{L_NOTIFY}</h3>
+		<p>{L_LIGHTFLOWER_UPDATE_COMPLETED}</p>
+	</div>
+<!-- ENDIF -->
+
+<form id="lightflower" method="post" action="{U_LIGHTFLOWER_ACTION}">
+
+	<div id="lightflower_update_general">
+		<fieldset>
+			<dl>
+				<dt><label for="user_birthdays">{L_UPDATE_USER_BIRTHDAYS}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="user_birthdays" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="user_birthdays" value="0" id="user_birthdays" checked="checked"/> {L_NO}</label></dd>
+			</dl>
+			<dl>
+				<dt><label for="prefixes">{L_UPDATE_PREFIXES}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="prefixes" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="prefixes" value="0" id="prefixes" checked="checked"/> {L_NO}</label></dd>
+			</dl>
+			<dl>
+				<dt><label for="randomize_topic_colors">{L_RANDOMIZE_TOPIC_COLORS}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="randomize_topic_colors" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="randomize_topic_colors" value="0" id="randomize_topic_colors" checked="checked"/> {L_NO}</label></dd>
+			</dl>			
+			<dl>
+				<dt><label for="topic_dark_bg">{L_TOPIC_DARK_BG}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="topic_dark_bg" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="topic_dark_bg" value="0" id="topic_dark_bg" checked="checked"/> {L_NO}</label></dd>
+			</dl>			
+			<dl>
+				<dt><label for="topic_dark_bg_random">{L_TOPIC_DARK_BG_RANDOM}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="topic_dark_bg_random" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="topic_dark_bg_random" value="0" id="topic_dark_bg_random" checked="checked"/> {L_NO}</label></dd>
+			</dl>			
+			<dl>
+				<dt><label for="randomize_forum_colors">{L_RANDOMIZE_FORUM_COLORS}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="randomize_forum_colors" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="randomize_forum_colors" value="0" id="randomize_forum_colors" checked="checked"/> {L_NO}</label></dd>
+			</dl>
+
+			<dl>		
+				<dt><label>{L_FORUM_COLOR_SELECT}:</label></dt>
+				<dd><select name="flc[]" multiple="multiple" size="30">{S_FORUM_COLOR_SELECT_OPTIONS}</select></dd>
+			</dl>	
+			<dl>
+				<dt><label for="forum_color_value">{L_FORUM_COLOR_VALUE}:</label></dt>
+				<dd><input type="text" id="forum_color_value" name="forum_color_value" value="50" maxlength="4" size="4" /></dd>
+			</dl>				
+
+			<dl>
+				<dt><label for="topic_colors_match">{L_TOPIC_COLORS_MATCH}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="topic_colors_match" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="topic_colors_match" value="0" id="topic_colors_match" checked="checked"/> {L_NO}</label></dd>
+			</dl>
+			<dl>
+				<dt><label for="update_calendar">{L_UPDATE_CALENDAR}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="update_calendar" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="update_calendar" value="0" id="update_calendar" checked="checked"/> {L_NO}</label></dd>
+			</dl>
+			<dl>
+				<dt><label for="update_locations">{L_UPDATE_LOCATIONS}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="update_locations" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="update_locations" value="0" id="update_locations" checked="checked"/> {L_NO}</label></dd>
+			</dl>
+
+
+			
+		</fieldset>
+	</div>
+	
+	<div id="lightflower_update_auto_location_tags">
+		<fieldset>
+			<legend>{L_SET_LOCATION_TAGS}</legend>	
+			<dl>		
+				<dt><label for="forum_select">{L_FORUM_SELECT}:</label><br /><span>{L_FORUM_SELECT_EXPLAIN}</span></dt>
+				<dd><select id="forum_select" name="fl">{S_FORUM_SELECT_OPTIONS}</select></dd>
+			</dl>
+			<dl>		
+				<dt><label for="continent_select">{L_CONTINENT_SELECT}:</label><br /><span>{L_CONTINENT_SELECT_EXPLAIN}</span></dt>
+				<dd><select id="continent_select" name="continent_select">{S_CONTINENT_SELECT_OPTIONS}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="auto_location">{L_AUTO_LOCATION}:</label><br /><span>{L_AUTO_LOCATION_EXPLAIN}</span></dt>
+				<dd><label><input type="radio" class="radio" name="auto_location" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="auto_location" value="0" id="auto_location" checked="checked"/> {L_NO}</label></dd>	
+			</dl>
+			<dl>
+				<dt><label for="erase_location">{L_ERASE_LOCATION}:</label><br /><span>{L_ERASE_LOCATION_EXPLAIN}</span></dt>
+				<dd><label><input type="radio" class="radio" name="erase_location" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="erase_location" value="0" id="erase_location" checked="checked"/> {L_NO}</label></dd>	
+			</dl>		
+			
+			<!-- IF .atopics -->
+
+			<table cellspacing="1" id="down">
+			<thead>
+			<tr>
+				<th>{L_TOPIC_TITLE}</th>
+				<th>{L_TOPIC_ID}</th>				
+				<th>{L_LOCATION}</th>
+				<th>{L_MULTI}</th>
+				<th>{L_PARENT_MISMATCH}</th>
+				<th>{L_ACTION}</th>				
+			</tr>
+			</thead>
+			<tbody>
+			<!-- BEGIN atopics -->
+				<!-- IF atopics.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+					<td style="text-align: left;">{atopics.TOPIC_TITLE}</td>
+					<td style="text-align: left; width: 40px;">{atopics.TOPIC_ID}</td>					
+					<td style="text-align: left; width: 250px;">{atopics.LOCATION}</td>
+					<td style="text-align: left; width: 40px;">{atopics.MULTI}</td>
+					<td style="text-align: left; width: 40px;">{atopics.PARENT_MISMATCH}</td>				
+					<td style="text-align: left; width: 40px;">
+						<input type="checkbox" name="t{atopics.TOPIC_ID}[]" value="{atopics.LOC_ID}" <!-- IF atopics.CHECKED --> checked="checked" <!-- ENDIF --> style="margin-left:auto; margin-right:auto;cursor:pointer:"/>
+					</td>	
+				</tr>
+			<!-- END atopics -->
+			</tbody>
+			</table>
+			
+			<input type="hidden" value="{AUTO_TOPIC_ARY}" name="auto_topic_ary"/>
+			
+			<!-- ENDIF -->
+			
+			<!-- IF .aborted -->
+			
+			<table cellspacing="1" id="down">
+			<thead>
+			<tr>
+				<th>{L_ABORTED_TOPIC_TITLE}</th>
+				<th>{L_TOPIC_ID}</th>						
+			</tr>
+			</thead>
+			<tbody>
+			<!-- BEGIN aborted -->
+				<!-- IF aborted.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+					<td style="text-align: left;">{aborted.TOPIC_TITLE}</td>
+					<td style="text-align: left; width: 40px;">{aborted.TOPIC_ID}</td>					
+				</tr>
+			<!-- END aborted -->
+			</tbody>
+			</table>			
+
+			<!-- ENDIF -->
+			
+			<!-- IF .showtopics -->
+
+			<table cellspacing="1" id="down">
+			<thead>
+			<tr>
+				<th>{L_TOPIC_TITLE}</th>
+				<th>{L_TOPIC_ID}</th>				
+				<th>{L_LOCATION}</th>
+				<th>{L_LOCATION}</th>							
+			</tr>
+			</thead>
+			<tbody>
+			<!-- BEGIN showtopics -->
+				<!-- IF showtopics.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+					<td style="text-align: left;">{showtopics.TOPIC_TITLE}</td>
+					<td style="text-align: left; width: 40px;">{showtopics.TOPIC_ID}</td>					
+					<td style="text-align: left; width: 180px;">{showtopics.LOCATION_1}</td>
+					<td style="text-align: left; width: 180px;">{showtopics.LOCATION_2}</td>
+				</tr>
+			<!-- END showtopics -->
+			</tbody>
+			</table>
+
+			<!-- ENDIF -->		
+	
+		</fieldset>
+	</div>
+	
+	<div id="lightflower_move_archive_forums">
+		<fieldset>
+					<legend>{L_ARCHIVE_FORUM_TAGS}</legend>	
+			<dl>		
+				<dt><label for="forum_select">{L_ARCHIVE_FORUM_SELECT}:</label><br /><span>{L_ARCHIVE_FORUM_SELECT_EXPLAIN}</span></dt>
+				<dd><select name="fai[]" multiple="multiple" size="30">{S_ARCHIVE_FORUM_SELECT_OPTIONS}</select></dd>
+			</dl>		
+			<dl>		
+				<dt><label for="forum_select">{L_ARCHIVE_FORUM_DEST_SELECT}:</label><br /><span>{L_ARCHIVE_FORUM_DEST_SELECT_EXPLAIN}</span></dt>
+				<dd><select name="fa">{S_FORUM_SELECT_OPTIONS}</select></dd>
+			</dl>	
+		</fieldset>
+	</div>	
+
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

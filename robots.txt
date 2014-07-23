@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /phpBB/faq.php
+Disallow: /phpBB/calendar.php
+

@@ -1,0 +1,246 @@
+
+<script type="text/javascript">
+// <![CDATA[
+
+var loc_b_parent_ids_ary = [{SCRIPT_LOC_B_PARENT_IDS_ARY}];
+var loc_c_parent_ids_ary = [{SCRIPT_LOC_C_PARENT_IDS_ARY}];
+var loc_b_has_children_ary = [{SCRIPT_LOC_B_HAS_CHILDREN_ARY}];
+
+var loc_b_parent_index_ary = [{SCRIPT_LOC_B_PARENT_INDEX_ARY}];
+var loc_c_parent_index_ary = [{SCRIPT_LOC_C_PARENT_INDEX_ARY}];
+
+var loc_ary = [{SCRIPT_LOC_ARY}];
+var loc_max{SCRIPT_LOC_MAX};
+var loc_num = 1;
+var edited_loc_input = 0;
+
+var loc_b_selects = new Array();
+
+var loc_c_copy;
+
+onload_functions.push('on_load_location_input()');
+
+function on_load_location_input()
+{
+
+
+
+	var loc_a = document.getElementById('loc_a0');
+	var loc_b = document.getElementById('loc_b0');
+	var loc_c = document.getElementById('loc_c0');
+	
+	loc_b_selects[0] = loc_b.cloneNode(true);	
+	
+	var loc_b_empty = loc_b.cloneNode(true);
+	loc_b_empty.options.length = 1;
+	
+	loc_c_copy = loc_c.cloneNode(true);	
+	loc_c.options.length = 1;
+
+	for (var i = 1; i < loc_a.options.length; i++)
+	{
+		loc_b_selects[i] = loc_b_empty.cloneNode(true);
+	}
+
+	for (i = 1; i < loc_b.options.length; i++)
+	{	
+		loc_b_selects[loc_b_parent_index_ary[i]].options.add(new Option(loc_b.options[i].text, loc_b.options[i].value));
+		
+		var loc_b_options = loc_b_selects[loc_b_parent_index_ary[i]].options	
+		var loc_b_last_option = loc_b_options[loc_b_options.length - 1];
+		loc_b_last_option.original_index = i;	
+		loc_b_last_option.has_children = (loc_b_has_children_ary[i]) ? true : false;
+	}	
+}
+
+function change_loc(select_element)
+{
+	var abc_id = select_element.id.charAt(4);
+	var num_id = parseInt(select_element.id.substr(5));
+	
+	var loc_a = document.getElementById('loc_a' + num_id);
+	var loc_b = document.getElementById('loc_b' + num_id);
+	var loc_c = document.getElementById('loc_c' + num_id);	
+
+	switch (abc_id)
+	{
+		case 'a':
+			loc_a.parentNode.replaceChild(loc_b_selects[loc_a.selectedIndex], loc_b);
+			loc_b_selects[loc_a.selectedIndex].value = 0;
+			loc_c.style.display = 'none';
+			break;
+		case 'b':
+			if (!loc_a.selectedIndex)
+			{
+				loc_a.selectedIndex = loc_b_parent_index_ary[loc_b.selectedIndex];
+				var store_loc_b_value = loc_b.value;				
+				loc_a.parentNode.replaceChild(loc_b_selects[loc_a.selectedIndex], loc_b);				
+				loc_b_selects[loc_a.selectedIndex].value = store_loc_b_value;	
+			}
+			var option_b = loc_b_selects[loc_a.selectedIndex].options[loc_b_selects[loc_a.selectedIndex].selectedIndex];
+
+			loc_c.options.length = 1;
+			
+			if (option_b.has_children)
+			{
+				loc_c.style.display = 'inline';				
+				loc_c.options.length = 1;
+			
+				for (var i = 1; i < loc_c_copy.options.length; i++)
+				{
+					if (option_b.original_index == loc_c_parent_index_ary[i])
+					{
+						loc_c.options.add(new Option(loc_c_copy.options[i].text, loc_c_copy.options[i].value))
+					}
+				}
+			}
+			else
+			{
+				loc_c.style.display = 'none';							
+			}
+
+			break;
+	}
+}
+
+function insert_new_location()
+{
+	var start_id = num_periods * 2;
+	var end_id = start_id + 1;
+	
+	var prev_year_id = start_id - 1;
+	var prev_year = document.getElementById('cy' + prev_year_id);
+	
+	var dl_element = document.getElementById('locdl0').cloneNode(false);
+	dl_element.id = 'locdl' + num_loc;
+
+	var dt_element = document.getElementById('locdt0').cloneNode(false);
+	dt_element.id = 'locdt' + num_loc;
+	
+	var lab_element = document.getElementById('loclab0').cloneNode(false);
+	cfrom_element.id = 'loclab' + num_loc;
+	
+	var n_loc_string = num_loc + 1;
+	n_loc_string += (num_loc < 3) ? ((num_loc < 2) ? '{L_LOCATION_SECOND}' : '{L_LOCATION_THIRD}') : '{L_LOCATION_FOURTH_PLUS}';
+	n_loc_string = '{L_LOCATION_N}'.replace(/%s/, n_loc_string);
+	n_loc_string += ':';
+	
+	var text_element = document.createTextNode(n_loc_string);
+	
+	var dd_element = document.getElementById('locdd0').cloneNode(false);
+	dd_element.id = 'locdd' + num_loc;
+	
+	var loc_a_element = document.getElementById('loc_a0').cloneNode(true);
+	cm_start_element.id = 'loc_a' + num_loc;
+	
+	var cd_start_element = document.getElementById('loc_b0').cloneNode(true);
+	cd_start_element.id = 'loc_b' + num_loc;
+	
+	var cy_start_element = document.getElementById('loc_c0').cloneNode(true);
+	cy_start_element.id = 'loc_c' + num_loc;
+
+	document.getElementById('loc_add_0').style.display = 'none';
+	var cal_add_element = document.getElementById('loc_add_0').cloneNode(true); 
+	cal_add_element.id = 'loc_add_' + num_loc;	
+	
+	cfrom_element.appendChild(from_text_element);
+	dt_element.appendChild(cfrom_element);
+	dl_element.appendChild(dt_element);	
+	dd_element.appendChild(cm_start_element);
+	dd_element.appendChild(document.createTextNode(' '));	
+	dd_element.appendChild(cd_start_element);
+	dd_element.appendChild(document.createTextNode(' '));	
+	dd_element.appendChild(cy_start_element);
+	dd_element.appendChild(document.createTextNode(' '));	
+	dd_element.appendChild(cto_element);
+	dd_element.appendChild(document.createTextNode(' '));	
+	dd_element.appendChild(cm_end_element);
+	dd_element.appendChild(document.createTextNode(' '));	
+	dd_element.appendChild(cd_end_element);
+	dd_element.appendChild(document.createTextNode(' '));	
+	dd_element.appendChild(cy_end_element);
+	dd_element.appendChild(document.createTextNode(' '));	
+	dd_element.appendChild(cal_add_element);	
+	dl_element.appendChild(dd_element);	
+	
+	var month = cm_start_element;
+	var day = cd_start_element;
+	var year = cy_start_element;
+	
+	month.set_options = set_month_options;
+	day.set_options = set_day_options;
+	year.set_options = set_year_options;
+	
+	year.min_msec = prev_year.msec + ((min_gap + 1) * 86400000);
+	year.max_msec = prev_year.msec + ((max_gap + 1) * 86400000);
+	
+	var min_date = new Date(year.min_msec);
+	var max_date = new Date(year.max_msec);
+	
+	year.min = min_date.getUTCFullYear();
+	year.max = max_date.getUTCFullYear();
+
+	month.min = min_date.getUTCMonth() + 1;
+	month.max = max_date.getUTCMonth() + 1;
+
+	day.min = min_date.getUTCDate();
+	day.max = max_date.getUTCDate();		
+
+	month.min_cur = 1;
+	month.max_cur = 12;
+	
+	day.min_cur = 1;
+	day.max_cur = 31;
+	
+	if (year.min == year.max)
+	{
+		month.max_cur = month.max;
+		month.min_cur = month.min;
+
+		if (month.min_cur == month.max_cur)
+		{
+			day.max_cur = day.max;
+			day.min_cur = day.min;
+		}	
+	}
+	
+	month.set_options();			
+	day.set_options();
+	year.set_options();	
+	
+	if (year.min == year.max)
+	{
+		year.value = year.min;	
+		
+		if (month.min_cur == month.max_cur)
+		{
+			month.value = month.min_cur;
+		}
+	}
+
+	month = cm_end_element;
+	day = cd_end_element;
+	year = cy_end_element;
+	
+	month.set_options = set_month_options;
+	day.set_options = set_day_options;
+	year.set_options = set_year_options;
+
+	month.options.length = 1;
+	day.options.length = 1;
+	year.options.length = 1;
+	
+	document.getElementById('fields_post_edit').insertBefore(dl_element, document.getElementById('cal_ins'));
+
+	edited_date_input = num_periods * 2;
+	
+	num_periods++;	
+}
+
+function add_location()
+{
+	insert_new_location();
+	document.getElementById('loc_add').style.display = 'none';
+}
+// ]]>
+</script>

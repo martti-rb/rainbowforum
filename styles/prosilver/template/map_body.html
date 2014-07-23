@@ -1,0 +1,110 @@
+<!-- INCLUDE overall_header.html -->
+
+<script type="text/javascript">
+//
+//
+var mouseover_evt_id_ary = [{SCRIPT_MSVR_EVT_ID_ARY}];
+var mouseover_color = '#330022'; 
+var mouseout_color_ary = new Array();
+var mouseover_ready = false;
+
+
+function mouseover_evt(calendar_evt)
+{
+	if (!mouseover_ready)
+	{
+		return;
+	}
+
+	var id_ary = mouseover_evt_id_ary[calendar_evt];
+	var id_length = id_ary.length;
+	
+	for (var i = 0; i < id_length; i++)
+	{
+		document.getElementById(id_ary[i]).style.backgroundColor = mouseover_color;	
+	}
+}
+
+function mouseout_evt(calendar_evt)
+{
+	var id_ary = mouseover_evt_id_ary[calendar_evt];
+	var id_length = id_ary.length;
+	
+	for (var i = 0; i < id_length; i++)
+	{
+		document.getElementById(id_ary[i]).style.backgroundColor = mouseout_color_ary[calendar_evt][i];
+	}
+}
+
+function on_load_calendar()
+{
+	var ary_length = mouseover_evt_id_ary.length;
+
+	for (var i = 0; i < ary_length; i++)
+	{
+		var id_ary = mouseover_evt_id_ary[i];
+		var id_length = id_ary.length;	
+		mouseout_color_ary[i] = new Array();
+		
+		for (var j = 0; j < id_length; j++)
+		{	
+			mouseout_color_ary[i][j] = document.getElementById(id_ary[j]).style.backgroundColor;
+		}
+	}
+
+	mouseover_ready = true;
+}
+
+onload_functions.push('on_load_calendar()', 'initialize()');
+</script>  
+
+<script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?key={GOOGLE_API_KEY}&sensor=false">
+</script>
+<script type="text/javascript">
+  function initialize() {
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"),
+        myOptions);
+  }
+
+</script>
+
+
+<div class="h-box radius-div" >
+
+<h2><a href="{U_MAP}">{L_MAP}</a></h2>
+
+</div>
+
+<!--
+<div class="rules radius-div">
+
+	<p>{L_MAP_COMMENT}</p>
+	
+</div>
+-->
+
+<form id="postform" method="post" action="{S_POST_ACTION}">
+
+<div class="panel forumbg radius-div" style="height:400px;">
+
+
+  <div id="map_canvas" style="width:100%; height:100%"></div>
+
+
+
+</div>
+
+
+{S_FORM_TOKEN}
+</form>
+
+<!-- INCLUDE jumpbox.html -->
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,75 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<!-- IF S_UPDATED -->
+	<div class="successbox">
+		<h3>{L_NOTIFY}</h3>
+		<p>{L_MAP_SETTINGS_UPDATE_SUCCESSFUL}</p>
+	</div>
+<!-- ENDIF -->
+
+
+<form id="map" method="post" action="{U_ACTION}">
+
+
+	<div id="map_general">
+		<fieldset>			
+			<legend>{L_MAP_GENERAL}</legend>				
+			<dl>
+				<dt><label for="map_enable">{L_MAP_ENABLE}:</label><br /><span>{L_MAP_ENABLE_EXPLAIN}</span></dt>
+				<dd><label><input type="radio" class="radio" name="map_enable" value="1"<!-- IF S_MAP_ENABLE --> id="map_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="map_enable" value="0"<!-- IF not S_MAP_ENABLE --> id="map_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>
+			<dl>
+				<dt><label for="google_api_key">{L_GOOGLE_API_KEY}:</label><br /><span>{L_GOOGLE_API_KEY_EXPLAIN}</span></dt>
+				<dd><input type="text" id="" name="google_api_key" value="{GOOGLE_API_KEY}" maxlength="50" size="50" /></dd>
+			</dl>				
+		</fieldset>
+	</div>	
+
+	<div id="auto_archive_cron">
+		<fieldset>					
+			
+			
+			<dl>
+				<dt><label for="forums_select">{L_FORUMS_SELECT}:</label><br /><span>{L_FORUMS_SELECT_EXPLAIN}</span></dt>
+				<dd><select id="forums_select" name="f[]" multiple="multiple" size="30">{FORUM_SELECT_OPTIONS}</select></dd>
+			</dl>
+			<dl>
+				<dd><label><input type="checkbox" class="radio" name="all_forums" value="1" /> {L_ALL_FORUMS}</label></dd>
+			</dl>
+			<dl>
+				<dt><label for="auto_archive_forum_enable">{L_AUTO_ARCHIVE_FORUM_ENABLE}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="auto_archive_forum_enable" value="1"<!-- IF S_ARCHIVE_FORUM_ENABLE --> id="auto_archive_forum_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="auto_archive_forum_enable" value="0"<!-- IF not S_ARCHIVE_FORUM_ENABLE --> id="auto_archive_forum_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>			
+			<dl>
+				<dt><label for="auto_archive_after_days">{L_AUTO_ARCHIVE_AFTER_DAYS}:</label><br /><span>{L_AUTO_ARCHIVE_AFTER_DAYS_EXPLAIN}</span></dt>
+				<dd><input type="text" id="auto_archive_after_days" name="auto_archive_after_days" value="{ARCHIVE_AFTER_DAYS}" maxlength="4" size="4" />{L_DAYS}</dd>
+			</dl>		
+		</fieldset>
+	</div>	
+
+	<div id="auto_archive_cron">
+		<fieldset>			
+			<legend>{L_AUTO_ARCHIVE_CRON}</legend>
+
+			<dl>
+				<dt><label for="auto_archive_cron_time">{L_AUTO_ARCHIVE_CRON_TIME}:</label><br /><span>{L_AUTO_ARCHIVE_CRON_TIME_EXPLAIN}</span></dt>
+				<dd><input type="text" id="auto_archive_cron_time" name="auto_archive_cron_time" value="{CRON_TIME}" maxlength="10" size="10" /></dd>
+			</dl>	
+		</fieldset>
+	</div>				
+	
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

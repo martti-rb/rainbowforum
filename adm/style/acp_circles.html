@@ -1,0 +1,36 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<!-- IF S_UPDATED -->
+	<div class="successbox">
+		<h3>{L_NOTIFY}</h3>
+		<p>{L_CIRCLES_SETTINGS_UPDATE_SUCCESSFUL}</p>
+	</div>
+<!-- ENDIF -->
+
+
+<form id="circles" method="post" action="{U_ACTION}">
+
+	<div id="link_general">
+		<fieldset>			
+			<legend>{L_CIRCLES_GENERAL}</legend>				
+			<dl>
+				<dt><label for="circle_forum_id">{L_CIRCLE_FORUM_ID}:</label><br /><span>{L_CIRCLE_FORUM_ID_EXPLAIN}</span></dt>
+				<dd><input type="text" id="circle_forum_id" name="circle_forum_id" value="{CIRCLE_FORUM_ID}" maxlength="4" size="4" /></dd>
+			</dl>			
+		</fieldset>
+	</div>				
+			
+	
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

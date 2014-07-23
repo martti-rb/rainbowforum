@@ -1,0 +1,72 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<form id="botscout_and_stop_forum_spam" method="post" action="{U_EDIT_ACTION}">
+
+
+	<div>
+		<fieldset>			
+			<legend>{L_BOTSCOUT_LEGEND}</legend>
+			<dl>
+				<dt><label for="bs_enable">{L_BOTSCOUT_ENABLE}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="bs_enable" value="1"<!-- IF S_BOTSCOUT_ENABLE --> id="bs_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="bs_enable" value="0"<!-- IF not S_BOTSCOUT_ENABLE --> id="bs_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>	
+			<dl>
+				<dt><label for="bs_api_key">{L_BS_API_KEY}:</label></dt>
+				<dd><input type="text" id="bs_api_key" name="bs_api_key" value="{BS_VALUE_API_KEY}" size="20" maxlength="20" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="bs_ip">{L_BS_IP}:</label></dt>
+				<dd><input type="text" id="bs_ip" name="bs_ip" value="{BS_VALUE_IP}" size="4" maxlength="4" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="bs_email">{L_BS_EMAIL}:</label></dt>
+				<dd><input type="text" id="bs_email" name="bs_email" value="{BS_VALUE_EMAIL}" size="4" maxlength="4" /></dd>
+			</dl>			
+			<dl>
+				<dt><label for="bs_username">{L_BS_USERNAME}:</label></dt>
+				<dd><input type="text" id="bs_username" name="bs_usernam" value="{BS_VALUE_USERNAME}" size="4" maxlength="4" /></dd>
+			</dl>						
+		</fieldset>
+	</div>
+
+	<div>
+		<fieldset>			
+			<legend>{L_STOP_FORUM_SPAM_LEGEND}</legend>
+			<dl>
+				<dt><label for="sfs_enable">{L_STOP_FORUM_SPAM_ENABLE}:</label></dt>
+				<dd><label><input type="radio" class="radio" name="sfs_enable" value="1"<!-- IF S_STOP_FORUM_SPAM_ENABLE --> id="sfs_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+					<label><input type="radio" class="radio" name="sfs_enable" value="0"<!-- IF not S_STOP_FORUM_SPAM_ENABLE --> id="sfs_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			</dl>	
+			<dl>
+				<dt><label for="sfs_api_key">{L_SFS_API_KEY}:</label></dt>
+				<dd><input type="text" id="sfs_api_key" name="sfs_api_key" value="{SFS_VALUE_API_KEY}" size="20" maxlength="20" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="sfs_ip">{L_SFS_IP}:</label></dt>
+				<dd><input type="text" id="sfs_ip" name="sfs_ip" value="{SFS_VALUE_IP}" size="4" maxlength="4" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="sfs_email">{L_SFS_EMAIL}:</label></dt>
+				<dd><input type="text" id="sfs_email" name="sfs_email" value="{SFS_VALUE_EMAIL}" size="4" maxlength="4" /></dd>
+			</dl>			
+			<dl>
+				<dt><label for="sfs_username">{L_SFS_USERNAME}:</label></dt>
+				<dd><input type="text" id="sfs_username" name="sfs_username" value="{SFS_VALUE_USERNAME}" size="4" maxlength="4" /></dd>
+			</dl>						
+		</fieldset>
+	</div>		
+	
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

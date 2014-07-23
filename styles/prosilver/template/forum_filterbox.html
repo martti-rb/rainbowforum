@@ -1,0 +1,193 @@
+
+<!-- IF S_FILTERBOX -->
+
+<div class="filter-box-header">{L_FILTERS} 
+	<!-- IF S_HIDE_FILTERS_ENABLE -->[
+	<a href="{S_HIDE_FILTERS_ACTION}" style="cursor:pointer;">
+	<!-- IF S_HIDE_FILTERS -->{L_ENABLE}</a>
+	<!-- ELSE -->{L_DISABLE}</a> | 
+	<a href="{S_RESET_ACTION}" style="cursor:pointer;">
+	{L_RESET}</a>
+	<!-- ENDIF -->]
+	<!-- ENDIF -->
+</div>
+
+<!-- IF not S_HIDE_FILTERS -->
+
+<form method="post" id="filterform" action="{S_FILTER_ACTION}">					
+						
+<!-- archive mod begin -->
+
+<!-- IF ARCHIVE_FILTER_OPTIONS -->
+
+	<fieldset class="t-filter">
+	<dl>
+		<dt><label for="archf">{L_FILTER_ARCHIVED_FROM}</label></dt>
+		<dd><select name="archf" id="archf" onchange="document.forms['filterform'].submit();">
+			{ARCHIVE_FILTER_OPTIONS}
+			</select></dd>
+	</dl>
+	</fieldset>
+		
+<!-- ENDIF -->
+
+<!-- archive mod end -->
+
+<!-- link mod begin -->
+
+<!-- IF IMAGE_THUMBNAIL_FILTER_OPTIONS -->
+	<fieldset class="t-filter">
+	<dl>
+		<dt><label for="image_thumbnail">{L_IMAGE_THUMBNAIL_FILTER}:</label></dt>
+		<dd>
+			<select name="image_thumbnail" id="image_thumbnail" onchange="document.forms['filterform'].submit()">
+				{IMAGE_THUMBNAIL_FILTER_OPTIONS}
+			</select>
+		</dd>
+	</dl>
+	</fieldset>
+<!-- ENDIF -->
+
+
+<!-- IF LINK_STATUS_FILTER_OPTIONS -->
+	<fieldset class="t-filter">
+	<dl>
+		<dt><label for="link_status">{L_LINK_STATUS_FILTER}:</label></dt>
+		<dd>
+			<select name="link_status" id="link_status" onchange="document.forms['filterform'].submit()">
+				{LINK_STATUS_FILTER_OPTIONS}
+			</select>
+		</dd>
+	</dl>
+	</fieldset>
+<!-- ENDIF -->
+
+<!-- IF LINK_TYPE_FILTER_OPTIONS -->
+	<fieldset class="t-filter">
+	<dl>
+		<dt><label for="link_type">{L_LINK_TYPE_FILTER}:</label></dt>
+		<dd>
+			<select name="link_type" id="link_type" onchange="document.forms['filterform'].submit()">
+				{LINK_TYPE_FILTER_OPTIONS}
+			</select>
+		</dd>
+	</dl>
+	</fieldset>
+<!-- ENDIF -->
+
+<!-- IF LINK_SOURCE_FILTER_OPTIONS -->	
+	<fieldset class="t-filter">
+	<dl>
+		<dt><label for="link_source">{L_LINK_SOURCE_FILTER}:</label></dt>
+		<dd>
+			<select name="link_source" id="link_source" onchange="document.forms['filterform'].submit()">
+				{LINK_SOURCE_FILTER_OPTIONS}
+			</select>
+		</dd>
+	</dl>
+	</fieldset>
+<!-- ENDIF -->
+
+<!-- IF LINK_FORUM_FILTER_OPTIONS -->	
+	<fieldset class="t-filter">
+	<dl>
+		<dt><label for="link_forum">{L_LINK_FORUM_FILTER}:</label></dt>
+		<dd>
+			<select name="link_forum" id="link_forum" onchange="document.forms['filterform'].submit()">
+				{LINK_FORUM_FILTER_OPTIONS}
+			</select>
+		</dd>
+	</dl>
+	</fieldset>
+<!-- ENDIF -->
+
+
+<!-- link mod end -->
+
+<!-- topic title prefix mod begin --> 
+
+<!-- IF PREFIX_FILTER_OPTIONS -->
+
+	<fieldset class="t-filter">
+	<dl>
+		<dt><label for="ttp">{L_PREFIX_FILTER}:</label></dt>
+		<dd>
+			<select name="ttp" id="ttp" onchange="document.forms['filterform'].submit()">
+				{PREFIX_FILTER_OPTIONS}
+			</select>
+		</dd>
+	</dl>
+	</fieldset>
+
+<!-- ENDIF --> 
+
+<!-- topic title prefix mod end -->
+
+<!-- calendar mod begin -->
+ 
+<!-- IF CALENDAR_FILTER_OPTIONS -->
+
+	<fieldset class="t-filter">
+	<dl>
+		<dt><label for="calf">{L_CALENDAR_FILTER}:</label></dt>
+		<dd>
+			<select name="calf" id="calf" onchange="document.forms['filterform'].submit()">
+				{CALENDAR_FILTER_OPTIONS}
+			</select>
+		</dd>
+	</dl>
+	</fieldset>
+	
+<!-- ENDIF -->
+
+<!-- calendar mod end -->
+
+<!-- locations mod begin -->
+
+<!-- IF LOCATION_FILTER_OPTIONS -->
+
+	<fieldset class="t-filter">
+	<dl>
+		<dt><label for="locf">{L_LOCATION_FILTER}:</label></dt>
+		<dd>
+			<select name="locf" id="locf" onchange="document.forms['filterform'].submit()">
+				{LOCATION_FILTER_OPTIONS}
+			</select>
+		</dd>
+	</dl>
+	</fieldset>
+
+<!-- ENDIF -->
+
+<!-- locations mod end -->
+
+<!-- IF S_SELECT_SORT_DAYS and not S_DISPLAY_ACTIVE -->
+
+<!--	<form method="post" id="sort_days" action="{S_FORUM_ACTION}"> -->
+	
+		<fieldset class="t-filter">
+	<!-- IF not S_IS_BOT -->
+		<dl>
+			<dt><label>{L_DISPLAY_TOPICS}:</label></dt>
+			<dd>
+			{S_SELECT_SORT_DAYS}
+			{L_SORT_BY} {S_SELECT_SORT_KEY}	
+			{S_SELECT_SORT_DIR}
+			<input type="submit" name="sort" value="{L_GO}" class="button2" />
+			</dd>			
+		</dl>	
+	<!-- ENDIF -->
+		</fieldset>
+<!--	</form> -->
+	
+<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+
+</form>
+<br/><hr/><br/>
+
+<!-- ENDIF -->
+
+

@@ -1,0 +1,12 @@
+/cache
+config.php
+error.log
+/download/*
+/files/*
+/images/*
+/store/*
+/cache/*
+!**.gitkeep
+!**.htaccess
+
+

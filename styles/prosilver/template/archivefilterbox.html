@@ -1,0 +1,16 @@
+
+	<form method="post" id="archivefilterbox" action="{S_ARCHIVEFILTERBOX_ACTION}" onsubmit="if(document.archivefilterbox.f.value == 'line'){return false;}">
+		<fieldset class="archivefilterbox">
+		<dl>
+			<dt><label for="archf">{L_FILTER_ARCHIVED_FROM}</label></dt>
+			<dd><select name="archf" id="archf" onchange="if(this.options[this.selectedIndex].value != 'line'){ document.forms['archivefilterbox'].submit() }">
+				<!-- BEGIN archivefilterbox_options -->
+					<option value="{archivefilterbox_options.OPTION_ID}"{archivefilterbox_options.SELECTED}<!-- IF archivefilterbox_options.OPTION_DISABLED --> disabled="disabled"<!-- ENDIF -->><!-- BEGIN level -->&nbsp; &nbsp;<!-- END level -->{archivefilterbox_options.OPTION_NAME} <!-- IF archivefilterbox_options.S_OPTION_NUM_TOPICS --><div>({archivefilterbox_options.OPTION_NUM_TOPICS})</div><!-- ENDIF --></option>
+				<!-- END archivefilterbox_options -->
+				</select>
+				<input type="submit" value="{L_GO}" class="button2" /></dd>
+		</dl>
+		</fieldset>
+	</form>
+
+

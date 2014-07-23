@@ -1,0 +1,185 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- IF S_TOPIC_COLOR --><!--
+<style type="text/css">
+.bg1{background-color: {COLOR_BG1};}
+.bg2{background-color: {COLOR_BG2};}
+.attachbox{background-color: {COLOR_ATTACH};}
+blockquote{background-color: {COLOR_QUOTE1}}
+blockquote blockquote{background-color: {COLOR_QUOTE2};}
+blockquote blockquote blockquote{background-color: {COLOR_QUOTE1};}
+dl.codebox{background-color: {COLOR_CODE};}
+</style> -->
+<!-- ENDIF -->
+
+
+<div class="h-box radius-div">
+
+<div>
+
+<!-- IF TOPIC_TITLE_THUMB -->
+<div style="float:left;">
+<!-- IF U_LINK_URL -->
+<a href="{U_LINK_URL}">{TOPIC_TITLE_THUMB}</a>
+<!-- ELSE -->
+{TOPIC_TITLE_THUMB}
+<!-- ENDIF -->
+</div>
+<div style="float:left;padding-left:20px;padding-top:10px;">
+<!-- ENDIF -->
+
+
+<!-- IF TOPIC_TITLE -->
+	<h2><a href="{U_VIEW_TOPIC}">
+{LINK_CIRCLE_IMG}	
+<!-- Topic Title Prefix Mod - Begin -->
+	{TITLE_PREFIX}
+<!-- Topic Title Prefix Mod - End -->	
+	{TOPIC_TITLE}</a>
+<!-- Calendar Mod - Begin -->	
+	<!-- IF DATE_SUFFIX -->[<a href="{U_CALENDAR_TOPIC}">{DATE_SUFFIX}</a>]<!-- ENDIF -->	
+<!-- Calendar Mod - End -->
+<!-- link mod begin -->
+<!-- IF LINK_STATUS_TEXT --><em class="{LINK_STATUS_CLASS}">[{LINK_STATUS_TEXT}]</em><!-- ENDIF -->
+<!-- link mod end -->
+	</h2>
+	
+<!-- link mod begin -->
+<!-- IF S_LINKS_FORUM -->
+<h4><a href="{U_LINK_URL}">{U_LINK_URL}</a></h4>
+<!-- IF LINK_TYPE_SOURCE_STR --><p>{LINK_TYPE_SOURCE_STR}</p><!-- ENDIF -->
+<!-- IF LINK_FORUM_STR --><p>{LINK_FORUM_STR}</p><!-- ENDIF -->
+<!-- ENDIF -->
+<!-- link mod end -->	
+	
+	
+<!-- locations mod begin -->
+<!-- IF LOCATION_TAG_STRING -->
+	<p>{LOCATION_TAG_STRING}</p>
+<!-- ENDIF -->
+<!-- locations mod end -->	
+	
+<!-- ELSE -->
+	<h2>
+<!-- Display Parent Forum Name Mod - Begin -->
+	<!-- IF PARENT_FORUM_NAME --><a href="{U_VIEW_PARENT_FORUM}">{PARENT_FORUM_NAME}</a> <strong>&#8249;</strong> <!-- ENDIF -->
+<!-- Display Parent Forum Name Mod - End -->
+	<a href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h2>
+<!-- ENDIF -->
+
+<!-- IF TOPIC_TITLE_THUMB -->
+</div>
+<div class="clear"></div>
+<!-- ENDIF -->
+</div>
+
+<!-- IF S_FORUM_RULES -->
+	<div class="inner">
+	<!-- IF U_FORUM_RULES -->
+		<a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
+	<!-- ELSE -->
+	<!-- {L_FORUM_RULES}      removed -->
+		{FORUM_RULES}
+	<!-- ENDIF -->
+	
+	</div>
+<!-- ENDIF -->
+
+</div>
+
+
+
+<form id="postform" method="post" action="{S_POST_ACTION}"{S_FORM_ENCTYPE}>
+
+<!-- IF S_DRAFT_LOADED -->
+	<div class="panel radius-div">
+		<div class="inner">	
+		<h3>{L_INFORMATION}</h3>
+		<p>{L_DRAFT_LOADED}</p>
+		</div>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_SHOW_DRAFTS -->
+<!-- INCLUDE drafts.html -->
+<!-- ENDIF -->
+
+<!-- IF S_POST_REVIEW -->
+<!-- INCLUDE posting_review.html -->
+<!-- ENDIF -->
+
+<!-- IF S_UNGLOBALISE -->
+	<div class="panel bg3 radius-div">
+		<div class="inner">
+		
+		<fieldset class="fields1">
+			<h2>{L_SELECT_DESTINATION_FORUM}</h2>
+			<p>{L_UNGLOBALISE_EXPLAIN}</p>
+			<dl>
+				<dt><label for="to_forum_id">{L_MOVE}:</label></dt>
+				<dd><select id="to_forum_id" name="to_forum_id">{S_FORUM_SELECT}</select></dd>
+			</dl>
+			
+			<dl>
+				<dt>&nbsp;</dt>
+				<dd><input class="button1" type="submit" name="post" value="{L_CONFIRM}" /> <input class="button2" type="submit" name="cancel_unglobalise" value="{L_CANCEL}" /></dd>
+			</dl>
+		</fieldset>
+		</div>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_PREVIEW --><!-- INCLUDE posting_preview.html --><!-- ENDIF -->
+
+<div class="panel radius-div" id="postingbox">
+	<div class="inner">
+	<h3>
+	{L_POST_A}
+	</h3>
+	<!-- DEFINE $EXTRA_POSTING_OPTIONS = 1 -->
+	<!-- INCLUDE posting_editor.html -->
+	{S_FORM_TOKEN}
+	
+	</div>
+</div>
+
+<!-- link mod begin -->
+
+<!-- IF S_SHOW_LINKS_BOX -->
+<!-- INCLUDE posting_links_body.html -->
+<!-- ENDIF -->
+
+<!-- link mod end -->
+
+
+<!-- IF S_SHOW_ATTACH_BOX -->
+<!-- INCLUDE posting_attach_body.html -->
+<!-- ENDIF -->
+
+<!-- IF S_SHOW_POLL_BOX or S_POLL_DELETE -->
+<!-- INCLUDE posting_poll_body.html -->
+<!-- ENDIF -->
+
+<!-- topics colors mod begin -->
+
+<!-- IF S_SHOW_TOPICS_COLORS_BOX -->
+<!-- INCLUDE posting_bg_color_body.html -->
+<!-- ENDIF -->
+
+<!-- topics colors mod end -->
+
+
+<!-- IF S_DISPLAY_REVIEW -->
+<!-- INCLUDE posting_topic_review.html -->
+<!-- ENDIF -->
+
+</form>
+<!-- IF not S_PRIVMSGS -->
+<script type="text/javascript">
+// <![CDATA[
+	subPanels(show_panel);
+// ]]>
+</script>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

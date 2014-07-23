@@ -1,0 +1,132 @@
+<div class="panel bg3 radius-div" id="bg-color-panel">
+	<div class="inner">	
+	<fieldset class="fields2">
+<!-- IF not S_LINKS_FORUM -->
+		<dl>
+			<dt><label for="topic_bg_color_dark">{L_DARK}:</label></dt>
+			<dd><label><input type="radio" class="radio" name="topic_bg_color_dark" value="1" onclick="dark_color_set();"<!-- IF S_TOPIC_BG_COLOR_DARK --> id="topic_bg_color_dark" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+				<label><input type="radio" class="radio" name="topic_bg_color_dark" value="0" onclick="light_color_set();"<!-- IF not S_TOPIC_BG_COLOR_DARK --> id="topic_bg_color_dark" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+<!-- ENDIF -->
+		
+		<dl>
+			<dt><label for="topic_bg_color">{L_COLOR_ID}:</label></dt>
+			<dd><label><input type="text" id="topic_bg_color" name="topic_bg_color" value="{S_TOPIC_BG_COLOR}" size="3" maxlength="3" onchange="sl1.setValueFromValue(this, 640);"/></dd>
+		</dl>	
+
+		<div>
+			<div id="cslider"> 
+				<div id="cvs">
+					<div class="top-fill"></div>
+					<div id="color_slider_bg_1" class="bg-topic-<!-- IF S_TOPIC_BG_COLOR_DARK -->c<!-- ELSE -->a<!-- ENDIF -->"></div>
+					<div id="color_slider_bg_2" class="bg-topic-<!-- IF S_TOPIC_BG_COLOR_DARK -->d<!-- ELSE -->b<!-- ENDIF -->"></div>
+				</div>			
+				<div class="slider" id="slider1" tabIndex="1" >
+				   <input class="slider-input" id="sliderin1" name="sliderin1"/> 		   
+				</div>	
+			</div>
+			<div id="c_examples">
+				<div class="top-fill"></div>			
+				<div id="color_example_1" class="c-example radius-div<!-- IF S_TOPIC_BG_COLOR_DARK --> c-text-dark<!-- ENDIF -->">{L_COLOR_TEXT_EXAMPLE}</div>
+				<div id="color_example_2" class="c-example radius-div<!-- IF S_TOPIC_BG_COLOR_DARK --> c-text-dark<!-- ENDIF -->">{L_COLOR_TEXT_EXAMPLE}</div>			
+			</div>
+		</div>
+	</fieldset>	
+	</div>
+</div>
+
+
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/js/range.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/js/timer.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/js/cslider.js"></script>
+<link type="text/css" rel="StyleSheet" href="{T_TEMPLATE_PATH}/css/zop/zop.css" />
+
+<script type="text/javascript">
+//
+var color_set = [{COLOR_SET_ARY}];
+
+function sl1_change()
+{	
+	document.getElementById("topic_bg_color").value = this.input.value;
+	refresh_color(this.ex1);
+	refresh_color(this.ex2);
+}
+
+var sl1 = new Slider(document.getElementById("slider1"), document.getElementById("sliderin1"));
+sl1.setMaximum(640);
+sl1.setValue({S_TOPIC_BG_COLOR});
+sl1.onchange = sl1_change;
+sl1.ex1 = document.getElementById("color_example_1");
+sl1.ex2 = document.getElementById("color_example_2");
+sl1.ex1.csi = 0;
+sl1.ex2.csi = 1;
+sl1.bg1 = document.getElementById("color_slider_bg_1");
+sl1.bg2 = document.getElementById("color_slider_bg_2");
+sl1.text_input = document.getElementById("topic_bg_color");
+sl1.dark = (document.getElementById("topic_bg_color_dark").value) ? true : false;
+refresh_color(sl1.ex1);
+refresh_color(sl1.ex2);
+sl1.text_input.value = sl1.getValue();
+
+function dark_color_set()
+{
+	sl1.dark = true;
+	sl1.bg1.className = 'bg-topic-c radius-div';
+	sl1.bg2.className = 'bg-topic-d radius-div';
+	sl1.ex1.className = 'c-example radius-div c-text-dark';
+	sl1.ex2.className = 'c-example radius-div c-text-dark';
+	refresh_color(sl1.ex1);
+	refresh_color(sl1.ex2);	
+}
+
+function light_color_set()
+{
+	sl1.dark = false;
+	sl1.bg1.className = 'bg-topic-a radius-div';
+	sl1.bg2.className = 'bg-topic-b radius-div';
+	sl1.ex1.className = 'c-example radius-div';
+	sl1.ex2.className = 'c-example radius-div';	
+	refresh_color(sl1.ex1);
+	refresh_color(sl1.ex2);		
+}
+
+
+function refresh_color(obj_ex)
+{
+	var val = parseInt(sl1.input.value);
+
+	var csi = ((sl1.dark) ? 2  : 0) + obj_ex.csi;
+	
+	var f1 = (val % 80) / 80;
+	var f2 = (80 - (val % 80)) / 80;
+	var i1 = Math.floor(val/80);
+
+	i1 = (i1 < 8) ? i1 : i1 - 1;
+
+	if (i1 == 8 - 1)  
+	{
+		var red = color_set[csi][i1][0];
+		var green = color_set[csi][i1][1];
+		var blue = color_set[csi][i1][2];
+
+	}
+	else 
+	{
+		var i2 = i1 + 1;
+		
+		red = Math.floor((color_set[csi][i1][0] * f2) + (color_set[csi][i2][0] * f1));
+		green = Math.floor((color_set[csi][i1][1] * f2) + (color_set[csi][i2][1] * f1));
+		blue = Math.floor((color_set[csi][i1][2] * f2) + (color_set[csi][i2][2] * f1)); 	
+	} 
+	
+	obj_ex.style.backgroundColor = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+}
+
+</script> 
+
+
+
+
+
+
+

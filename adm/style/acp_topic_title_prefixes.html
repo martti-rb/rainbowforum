@@ -1,0 +1,176 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<form id="topic_title_prefixes" method="post" action="{U_EDIT_ACTION}">
+
+	<div id="display_parent_forums">
+		<fieldset>			
+			<legend>{L_FORUMS_SELECT_LEGEND}</legend>
+			<dl>
+				<dt><label for="forums_select">{L_FORUMS_SELECT}:</label><br /><span>{L_FORUMS_SELECT_EXPLAIN}</span></dt>
+				<dd><select id="forums_select" name="f[]" multiple="multiple" size="30">{S_FORUMS_SELECT_OPTIONS}</select></dd>
+			</dl>
+
+			<dl>
+				<dt><label for="prefix_group">{L_PREFIX_GROUP}:</label><br /><span>{L_PREFIX_GROUP_EXPLAIN}</span></dt>
+				<dd><select id="prefix_group" name="prefix_group_id">{S_PREFIX_GROUP_OPTIONS}</select></dd>
+			</dl>			
+
+		</fieldset>
+	</div>
+
+	<div >
+		<fieldset>			
+			<dl>
+				<dt><label for="cleanup_empty_prefix">{L_CLEANUP_EMPTY_PREFIX}:</label><br /><span>{L_CLEANUP_EMPTY_PREFIX_EXPLAIN}</span></dt>
+				<dd><label><input type="radio" class="radio" name="cleanup_empty_prefix" value="1"/> {L_YES}</label>
+					<label><input type="radio" class="radio" name="cleanup_empty_prefix" value="0" id="cleanup_empty_prefix" checked="checked"/> {L_NO}</label></dd>
+			</dl>		
+
+		</fieldset>
+	</div>	
+	
+	
+	
+	<div>
+		<fieldset>			
+			<legend>{L_PREFIXES}</legend>
+			<dl>
+				<dt><label for="new_prefix">{L_NEW_PREFIX}:</label><br /><span>{L_NEW_PREFIX_EXPLAIN}</span></dt>
+				<dd><input type="text" id="new_prefix" name="new_prefix" value="" maxlength="30" size="30" /></dd>
+			</dl>	
+			<dl>
+				<dt><label for="prefix_delete">{L_PREFIX_DELETE}:</label><br /><span>{L_PREFIX_DELETE_EXPLAIN}</span></dt>
+				<dd><select id="prefix_delete" name="prefix_delete[]" multiple="multiple" size="10">
+				{PREFIX_OPTIONS}
+				</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="prefix_move">{L_PREFIX_MOVE}:</label><br /><span>{L_PREFIX_MOVE_EXPLAIN}</span></dt>
+				<dd><select id="prefix_move" name="prefix_move">
+				{PREFIX_OPTIONS}
+				</select></dd>
+			</dl>					
+		</fieldset>
+	</div>
+
+	<div>
+		<fieldset>			
+			<legend>{L_GROUPS}</legend>
+			<dl>
+				<dt><label for="new_group">{L_NEW_GROUP}:</label><br /><span>{L_NEW_GROUP_EXPLAIN}</span></dt>
+				<dd><input type="text" id="new_group" name="new_group" value="" maxlength="30" size="30" /></dd>
+			</dl>	
+			<dl>
+				<dt><label for="group_delete">{L_GROUP_DELETE}:</label><br /><span>{L_GROUP_DELETE_EXPLAIN}</span></dt>
+				<dd><select id="group_delete" name="group_delete[]" multiple="multiple" size="10">
+				{GROUP_OPTIONS}
+				</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="group_move">{L_GROUP_MOVE}:</label><br /><span>{L_GROUP_MOVE_EXPLAIN}</span></dt>
+				<dd><select id="group_move" name="group_move">
+				{GROUP_OPTIONS}
+				</select></dd>
+			</dl>					
+		</fieldset>
+	</div>
+
+	<div>
+		<fieldset>			
+			<legend>{L_PREFIXES_GROUPS}</legend>
+			<dl>
+				<dt><label for="group_select">{L_GROUP_SELECT}:</label><br /><span>{L_GROUP_SELECT_EXPLAIN}</span></dt>
+				<dd><select id="group_select" name="group_select">
+				{GROUP_OPTIONS}
+				</select></dd>
+			</dl>			
+			<dl>
+				<dt><label for="prefix_add">{L_PREFIX_ADD}:</label><br /><span>{L_PREFIX_ADD_EXPLAIN}</span></dt>
+				<dd id="pr_add"><select id="prefix_add" name="prefix_add[]"  multiple="multiple" size="10">
+				{PREFIX_OPTIONS}
+				</select></dd>
+			</dl>	
+			<dl>
+				<dt><label for="prefix_remove">{L_PREFIX_REMOVE}:</label><br /><span>{L_PREFIX_REMOVE_EXPLAIN}</span></dt>
+				<dd id="pr_rem"><select id="prefix_remove" name="prefix_remove[]"  multiple="multiple" size="10">
+				{PREFIX_OPTIONS}
+				</select></dd>
+			</dl>	
+		</fieldset>
+	</div>
+
+	
+	
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<script type="text/javascript">
+	
+var prefixes_in_groups = [{PREFIXES_IN_GROUPS}];
+
+function on_load()
+{
+	var gr = document.getElementById('group_select');
+	gr.addp = document.getElementById('prefix_add');
+	gr.remp = document.getElementById('prefix_remove');
+	gr.pr_add = document.getElementById('pr_add');
+	gr.pr_rem = document.getElementById('pr_rem');
+	
+	gr.modeladdp = gr.addp.cloneNode(true);
+	gr.modeladdp.length = 1;
+	gr.modelremp = gr.remp.cloneNode(true);
+	gr.modelremp.length = 1;	
+
+	for (var i = 0; i < gr.options.length; i++)
+	{
+		gr.options[i].addp = gr.modeladdp.cloneNode(true);
+		gr.options[i].remp = gr.modelremp.cloneNode(true);	
+	}
+	
+	for (i = 0; i < prefixes_in_groups.length; i++)
+	{
+		var addp = gr.options[i + 1].addp.options;
+		var remp = gr.options[i + 1].remp.options;
+	
+		for (var a = 1; a < gr.addp.options.length; a++)
+		{
+			var text = gr.addp.options[a].text;
+			var val = gr.addp.options[a].value;
+			var o = prefixes_in_groups[i].indexOf(a);
+			var desp = (o == -1) ? addp : remp;
+			desp.add(new Option(text,val));	
+		}				
+	}	
+
+	gr.onchange = group_onchange;
+	gr.addp.length = 1;
+	gr.remp.length = 1;
+}
+
+function group_onchange()
+{
+	var gr = document.getElementById('group_select');
+	var gr_option = gr.options[gr.options.selectedIndex];
+	
+	
+	gr.pr_add.replaceChild(gr_option.addp, gr.addp);	
+	gr.pr_rem.replaceChild(gr_option.remp, gr.remp);
+	gr.addp = gr_option.addp;
+	gr.remp = gr_option.remp;
+}
+
+on_load();
+	   
+</script>	
+
+
+<!-- INCLUDE overall_footer.html -->
