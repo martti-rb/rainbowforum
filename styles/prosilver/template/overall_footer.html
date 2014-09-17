@@ -31,18 +31,6 @@
 
 		<strong>{L_DISCLAIMER}</strong><br />
 
-	<!-- related sites 
-
-		<a href="http://rainbowgathering.eu/" onclick="window.open(this.href);return false;">rainbowgathering.eu</a>
-		&nbsp;|&nbsp;	-->	
-	
-<!-- IF STATCOUNTER_EN -->
-
-		<a href="http://my.statcounter.com/project/standard/stats.php?project_id=3672386&guest=1" onclick="window.open(this.href);return false;">Statcounter</a>
-		&nbsp;|&nbsp;
-	
-<!-- ENDIF -->
-
 		Powered by <a href="http://www.phpbb.com/" onclick="window.open(this.href);return false;">phpBB</a> 
 		&copy; 2000, 2002, 2005, 2007 phpBB Group
 		<!-- IF TRANSLATION_INFO --><br />{TRANSLATION_INFO}<!-- ENDIF -->
@@ -58,32 +46,21 @@
 	<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
 </div>
 
-<!-- IF GOOGLE_ANALYTICS_EN -->
-
+<!-- Piwik -->
 <script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.rainbowforum.net/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
 </script>
-<script type="text/javascript">
-var pageTracker = _gat._getTracker("UA-4330596-1");
-pageTracker._initData();
-pageTracker._trackPageview();
-</script>
-
-<!-- ENDIF -->
-
-<!-- IF STATCOUNTER_EN -->
-
-<script type="text/javascript">
-sc_project=3672386; 
-sc_invisible=1; 
-sc_partition=44; 
-sc_security="0ed8d70c"; 
-</script>
-
-<script type="text/javascript" src="http://www.statcounter.com/counter/counter_xhtml.js"></script>
-
-<!-- ENDIF -->
+<noscript><p><img src="http://piwik.rainbowforum.net/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
 
 </body>
 </html>
